@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>データの引越し屋さん｜中小製造業のための、基幹システム移行サービス</title>
+<meta name="description" content="保守も切れて、分かる人もいない。そんな古い基幹システムを、現状診断から新環境の用意、データと業務フローの移し替えまで、まるごと引き受けます。中小製造業に特化。診断は無料です。運営：大和合同会社">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213A;          /* 工業ネイビー・主テキスト */
+    --ink-soft:#465067;     /* 副テキスト */
+    --ink-mute:#7A8398;     /* 補足 */
+    --paper:#F1F3EF;        /* クールな紙白・背景 */
+    --paper-2:#E9ECE5;      /* 一段沈んだ面 */
+    --surface:#FFFFFF;      /* カード面 */
+    --line:#D8DCD2;         /* ヘアライン */
+    --blue:#2A57A4;         /* スチールブルー・構造/リンク */
+    --blue-deep:#1C3C77;
+    --blue-soft:#E7EDF7;
+    --signal:#DE8E27;       /* 琥珀・搬送の信号色（CTA/経路） */
+    --signal-deep:#C2761A;
+    --signal-soft:#FBEFD8;
+    --old:#9AA0AE;          /* 旧システムの色味 */
+
+    --maxw:1120px;
+    --pad-x:clamp(1.25rem,5vw,2rem);
+    --sec-y:clamp(4rem,9vw,7rem);
+
+    --r-card:16px;
+    --r-btn:11px;
+    --r-tag:6px;
+
+    --sh-sm:0 1px 2px rgba(20,33,58,.06);
+    --sh-card:0 1px 2px rgba(20,33,58,.05), 0 10px 30px rgba(20,33,58,.07);
+    --sh-lift:0 2px 4px rgba(20,33,58,.06), 0 18px 44px rgba(20,33,58,.12);
+
+    --ff-jp:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    --ff-lat:"Archivo",var(--ff-jp);
+    --ff-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--ff-jp);font-weight:400;line-height:1.9;
+    font-feature-settings:"palt" 1;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    letter-spacing:.01em;
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad-x)}
+
+  /* ---------- 共通パーツ ---------- */
+  .eyebrow{
+    font-family:var(--ff-mono);font-weight:500;font-size:.74rem;
+    letter-spacing:.16em;color:var(--blue);text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:.55em;margin:0 0 1.1rem;
+  }
+  .eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--blue);opacity:.55}
+  .eyebrow .jp{font-family:var(--ff-jp);letter-spacing:.08em;text-transform:none;font-weight:500}
+
+  h1,h2,h3{margin:0;line-height:1.32;font-weight:900;letter-spacing:.005em}
+  h2.title{font-size:clamp(1.55rem,3.6vw,2.4rem);letter-spacing:-.005em}
+  .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--ink-soft);font-weight:500;line-height:1.95}
+
+  .btn{
+    --bg:var(--signal);--fg:#fff;
+    display:inline-flex;align-items:center;justify-content:center;gap:.6em;
+    font-family:var(--ff-jp);font-weight:700;font-size:1.02rem;line-height:1.2;
+    background:var(--bg);color:var(--fg);border:none;cursor:pointer;
+    padding:1rem 1.8rem;border-radius:var(--r-btn);
+    box-shadow:0 1px 2px rgba(20,33,58,.18), 0 10px 22px rgba(194,118,26,.28);
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    text-decoration:none;text-align:center;
+  }
+  .btn:hover{background:var(--signal-deep);transform:translateY(-2px);box-shadow:0 2px 4px rgba(20,33,58,.2), 0 16px 30px rgba(194,118,26,.34);text-decoration:none}
+  .btn:active{transform:translateY(0)}
+  .btn .arr{font-family:var(--ff-mono);font-weight:600;transition:transform .18s ease}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn.ghost{--bg:transparent;--fg:var(--ink);box-shadow:none;border:1.5px solid var(--line);padding:.85rem 1.4rem;font-size:.95rem}
+  .btn.ghost:hover{background:var(--surface);border-color:var(--ink-mute);transform:none;box-shadow:var(--sh-sm)}
+  .btn.sm{padding:.7rem 1.15rem;font-size:.9rem;box-shadow:0 1px 2px rgba(20,33,58,.16), 0 6px 14px rgba(194,118,26,.24)}
+
+  .cta-note{font-family:var(--ff-mono);font-size:.78rem;color:var(--ink-mute);margin-top:.9rem;letter-spacing:.02em}
+
+  :where(a,button,summary,input,textarea):focus-visible{
+    outline:3px solid var(--blue);outline-offset:2px;border-radius:4px;
+  }
+
+  /* ---------- ヘッダー（ナビは置かない／ロゴ＋単一CTA） ---------- */
+  .top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(241,243,239,.82);backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid transparent;transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .top.scrolled{border-color:var(--line);box-shadow:0 4px 18px rgba(20,33,58,.05)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+  .brand:hover{text-decoration:none}
+  .brand .glyph{
+    width:30px;height:30px;border-radius:8px;flex:none;
+    background:var(--ink);position:relative;box-shadow:var(--sh-sm);
+  }
+  .brand .glyph::before{content:"";position:absolute;inset:7px;border:1.5px solid var(--signal);border-radius:3px}
+  .brand .glyph::after{content:"";position:absolute;left:13px;top:13.5px;width:8px;height:8px;background:var(--paper);border:1.5px solid var(--signal);border-radius:2px;transform:translate(1.5px,1.5px)}
+  .brand b{font-family:var(--ff-jp);font-weight:900;font-size:1.04rem;letter-spacing:.01em;line-height:1}
+  .brand small{display:block;font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.12em;color:var(--ink-mute);margin-top:.18rem;font-weight:500}
+  .top .btn{transition:transform .18s ease, box-shadow .18s ease, background .18s ease, opacity .25s ease, visibility .25s ease}
+  .top:not(.scrolled) .btn{opacity:0;visibility:hidden;transform:translateY(-4px)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;padding-top:clamp(2.5rem,6vw,4.5rem);padding-bottom:var(--sec-y)}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(120% 90% at 88% -10%, rgba(42,87,164,.07), transparent 60%),
+      linear-gradient(180deg, #F5F6F2 0%, var(--paper) 46%);
+  }
+  /* 方眼（設計図/書類の地） */
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 70%);
+    mask-image:linear-gradient(180deg,#000 0%,transparent 70%);
+    background-image:linear-gradient(rgba(20,33,58,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,58,.045) 1px,transparent 1px);
+    background-size:30px 30px;
+  }
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,4rem);align-items:center}
+
+  .hero h1{
+    font-size:clamp(2rem,5.2vw,3.5rem);line-height:1.28;letter-spacing:-.01em;
+    margin:.2rem 0 1.4rem;
+  }
+  .hero h1 .hl{
+    background:linear-gradient(180deg,transparent 60%,var(--signal-soft) 60% 92%,transparent 92%);
+    -webkit-box-decoration-break:clone;box-decoration-break:clone;padding-inline:.05em;
+  }
+  .hero .lead{max-width:34em}
+  .hero-cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem 1.2rem;align-items:center}
+  .trust-row{margin-top:1.7rem;display:flex;flex-wrap:wrap;gap:.5rem .7rem}
+  .pill{
+    font-family:var(--ff-jp);font-weight:500;font-size:.82rem;color:var(--ink-soft);
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;
+    padding:.42rem .85rem;display:inline-flex;align-items:center;gap:.45em;box-shadow:var(--sh-sm);
+  }
+  .pill svg{flex:none}
+
+  /* ---------- シグネチャ：移送票 ---------- */
+  .manifest{
+    background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    box-shadow:var(--sh-lift);padding:1.15rem 1.15rem 1.25rem;position:relative;
+  }
+  .mf-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.1rem .25rem .9rem;border-bottom:1px dashed var(--line);margin-bottom:1rem}
+  .mf-head .t{font-family:var(--ff-mono);font-weight:600;font-size:.82rem;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;gap:.5em}
+  .mf-head .t .ja{font-family:var(--ff-jp);font-weight:700;letter-spacing:.02em}
+  .mf-status{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.08em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid #F0D9A8;padding:.2rem .55rem;border-radius:999px;font-weight:600}
+
+  .mf-grid{display:grid;grid-template-columns:1fr 34px 1fr;align-items:stretch;gap:.4rem}
+  .panel{border-radius:12px;padding:.8rem .8rem .85rem;min-width:0}
+  .panel.old{background:#F4F5F2;border:1.5px dashed #C9CDC2}
+  .panel.new{background:linear-gradient(180deg,#F8FAFF,#FFFFFF);border:1.5px solid var(--blue-soft);box-shadow:inset 0 0 0 1px rgba(42,87,164,.04)}
+  .panel .ph{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem;margin-bottom:.65rem}
+  .panel .ph b{font-family:var(--ff-jp);font-weight:700;font-size:.92rem;letter-spacing:.01em}
+  .panel.old .ph b{color:var(--ink-soft)}
+  .panel.new .ph b{color:var(--blue-deep)}
+  .panel .tagk{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute)}
+  .panel.new .tagk{color:var(--blue)}
+
+  .rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.34rem}
+  .rows li{
+    font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.01em;line-height:1.3;
+    display:flex;align-items:center;gap:.4em;padding:.32rem .45rem;border-radius:5px;
+  }
+  .panel.old .rows li{background:#fff;border:1px solid #E4E6DF;color:var(--old)}
+  .panel.old .rows li .dot{width:6px;height:6px;border-radius:50%;background:#C4C8BD;flex:none}
+  .panel.new .rows li{background:var(--blue-soft);border:1px solid #D5E1F4;color:var(--blue-deep);font-weight:500;animation:rowIn .55s cubic-bezier(.2,.7,.3,1) backwards}
+  .panel.new .rows li:nth-child(1){animation-delay:.25s}
+  .panel.new .rows li:nth-child(2){animation-delay:.45s}
+  .panel.new .rows li:nth-child(3){animation-delay:.65s}
+  .panel.new .rows li:nth-child(4){animation-delay:.85s}
+  .panel.new .rows li:nth-child(5){animation-delay:1.05s}
+  .panel.new .rows li .ck{flex:none;color:var(--blue)}
+  @keyframes rowIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+
+  .mf-route{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+  .mf-route .line{width:2px;flex:1;background:repeating-linear-gradient(180deg,var(--signal) 0 6px,transparent 6px 12px);opacity:.5}
+  .mf-route .chip{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:30px;height:30px;border-radius:50%;background:var(--signal);color:#fff;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(194,118,26,.4);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(194,118,26,.4)}50%{box-shadow:0 4px 12px rgba(194,118,26,.4),0 0 0 7px rgba(222,142,39,.12)}}
+  .mf-foot{margin-top:.95rem;padding-top:.75rem;border-top:1px dashed var(--line);display:flex;align-items:center;gap:.5em;font-family:var(--ff-jp);font-size:.78rem;color:var(--ink-soft);font-weight:500}
+  .mf-foot svg{flex:none;color:var(--signal-deep)}
+
+  /* ---------- セクション地 ---------- */
+  section{position:relative}
+  .sec{padding-block:var(--sec-y)}
+  .sec.alt{background:var(--surface);border-block:1px solid var(--line)}
+  .sec-head{max-width:42rem;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
+  .sec-head.center{margin-inline:auto;text-align:center}
+  .sec-head.center .eyebrow{justify-content:center}
+  .sec-head .title + p{margin:1rem 0 0;color:var(--ink-soft);font-size:1.04rem;font-weight:500}
+
+  /* 共感：チェックリスト */
+  .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem}
+  .check{
+    display:flex;gap:.85rem;align-items:flex-start;background:var(--surface);
+    border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.1rem;box-shadow:var(--sh-sm);
+  }
+  .check .bx{
+    flex:none;width:24px;height:24px;border-radius:6px;border:1.5px solid var(--line);
+    background:var(--paper);display:flex;align-items:center;justify-content:center;margin-top:.15rem;color:var(--signal-deep);
+  }
+  .check p{margin:0;font-size:.98rem;font-weight:500;line-height:1.7}
+  .checklist + .after{margin-top:1.9rem;font-size:1.05rem;font-weight:700;color:var(--ink);text-align:center}
+  .after .u{box-shadow:inset 0 -.5em 0 var(--signal-soft)}
+
+  /* リスク：3カード */
+  .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  .risk{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+    padding:1.6rem 1.5rem;box-shadow:var(--sh-card);position:relative;overflow:hidden;
+  }
+  .risk::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--signal)}
+  .risk .ic{width:44px;height:44px;border-radius:11px;background:var(--signal-soft);color:var(--signal-deep);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem}
+  .risk h3{font-size:1.18rem;margin-bottom:.55rem;font-weight:700}
+  .risk p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
+
+  /* 解決：一気通貫3ステップ */
+  .flow-intro{max-width:40rem;margin-bottom:2.6rem}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+  .step{position:relative;padding:0 1.4rem}
+  .step:not(:last-child)::after{
+    content:"";position:absolute;top:34px;right:-12px;width:24px;height:24px;z-index:2;
+    background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23DE8E27' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+  }
+  .step .num{
+    font-family:var(--ff-mono);font-weight:600;font-size:.82rem;letter-spacing:.05em;
+    width:68px;height:68px;border-radius:16px;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;
+    box-shadow:var(--sh-card);position:relative;
+  }
+  .step .num span{font-size:1.55rem;font-weight:700;line-height:1}
+  .step.s2 .num{background:var(--blue-deep)}
+  .step.s3 .num{background:var(--signal-deep)}
+  .step h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700}
+  .step p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
+  .step .free{display:inline-flex;align-items:center;gap:.4em;margin-top:.85rem;font-family:var(--ff-mono);font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid #F0D9A8;padding:.25rem .6rem;border-radius:999px}
+
+  /* なぜここか */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:.5rem}
+  .why{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:1.7rem 1.5rem;box-shadow:var(--sh-card)}
+  .why .k{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase;margin-bottom:.9rem}
+  .why h3{font-size:1.16rem;margin-bottom:.6rem;font-weight:700;line-height:1.5}
+  .why p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
+  .why .more{display:inline-block;margin-top:.85rem;font-family:var(--ff-jp);font-weight:600;font-size:.9rem}
+
+  /* FAQ */
+  .faq{max-width:48rem;margin-inline:auto;display:flex;flex-direction:column;gap:.7rem}
+  details.qa{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh-sm);overflow:hidden}
+  details.qa[open]{box-shadow:var(--sh-card);border-color:#C9D5EA}
+  summary.q{
+    list-style:none;cursor:pointer;display:flex;align-items:flex-start;gap:.9rem;
+    padding:1.15rem 1.3rem;font-weight:700;font-size:1.02rem;line-height:1.55;color:var(--ink);
+  }
+  summary.q::-webkit-details-marker{display:none}
+  summary.q .qmark{font-family:var(--ff-mono);font-weight:600;color:var(--blue);flex:none;margin-top:.05rem}
+  summary.q .tog{margin-left:auto;flex:none;width:22px;height:22px;color:var(--ink-mute);transition:transform .25s ease;margin-top:.15rem}
+  details.qa[open] summary.q .tog{transform:rotate(45deg);color:var(--signal-deep)}
+  .qa .a{padding:0 1.3rem 1.25rem 3rem;color:var(--ink-soft);font-size:.97rem;line-height:1.85}
+  .qa .a strong{color:var(--ink);font-weight:700}
+
+  /* 流れ */
+  .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;counter-reset:p}
+  .pl{position:relative;text-align:center;padding:.4rem .3rem}
+  .pl .ring{
+    width:50px;height:50px;border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;
+    font-family:var(--ff-mono);font-weight:600;font-size:1rem;background:var(--surface);border:2px solid var(--line);color:var(--ink);position:relative;z-index:1;
+  }
+  .pl.paid .ring{border-color:var(--signal);color:var(--signal-deep)}
+  .pl::before{content:"";position:absolute;top:25px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .pl:first-child::before{display:none}
+  .pl h4{font-size:.94rem;margin:0 0 .25rem;font-weight:700;line-height:1.4}
+  .pl span{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.04em;color:var(--ink-mute)}
+  .pl.free span{color:var(--blue)}
+  .pipeline-note{margin-top:2rem;text-align:center;font-size:.92rem;color:var(--ink-soft)}
+  .pipeline-note b{color:var(--signal-deep)}
+
+  /* ---------- 最終CTA＋フォーム ---------- */
+  .final{background:var(--ink);color:#EAEDF4;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent);mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent)}
+  .final .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+  .final .eyebrow{color:var(--signal)}
+  .final .eyebrow::before{background:var(--signal)}
+  .final h2{font-size:clamp(1.7rem,3.6vw,2.5rem);color:#fff;line-height:1.34;margin-bottom:1.1rem}
+  .final h2 .hl{color:var(--signal)}
+  .final .lead{color:#B9C1D4}
+  .final .assure{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+  .final .assure div{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem;color:#D4DAE6;font-weight:500}
+  .final .assure svg{flex:none;color:var(--signal);margin-top:.18rem}
+
+  .form-card{background:var(--surface);border-radius:18px;box-shadow:var(--sh-lift);padding:clamp(1.5rem,3vw,2.1rem);color:var(--ink)}
+  .form-card .fh{font-weight:900;font-size:1.18rem;margin-bottom:.35rem}
+  .form-card .fs{font-size:.88rem;color:var(--ink-mute);margin-bottom:1.4rem;font-family:var(--ff-mono);letter-spacing:.02em}
+  .field{margin-bottom:1rem}
+  .field label{display:block;font-size:.86rem;font-weight:700;margin-bottom:.4rem;color:var(--ink)}
+  .field label .req{color:var(--signal-deep);font-family:var(--ff-mono);font-size:.72rem;margin-left:.35em;font-weight:600}
+  .field label .opt{color:var(--ink-mute);font-weight:500;font-size:.78rem;margin-left:.35em}
+  .field input,.field textarea{
+    width:100%;font-family:var(--ff-jp);font-size:1rem;color:var(--ink);
+    padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:10px;background:#FCFDFB;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:#AEB4A6}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+  .field textarea{resize:vertical;min-height:84px;line-height:1.7}
+  .field.err input,.field.err textarea{border-color:#C2761A;box-shadow:0 0 0 3px var(--signal-soft)}
+  .field .msg{display:none;color:var(--signal-deep);font-size:.78rem;margin-top:.35rem;font-weight:600}
+  .field.err .msg{display:block}
+  .form-card .btn{width:100%;margin-top:.4rem}
+  .form-card .privacy{margin-top:1rem;font-size:.78rem;color:var(--ink-mute);line-height:1.7;display:flex;gap:.5em;align-items:flex-start}
+  .form-card .privacy svg{flex:none;margin-top:.15rem;color:var(--ink-mute)}
+
+  .form-done{display:none;text-align:center;padding:1.5rem .5rem}
+  .form-done.show{display:block;animation:rowIn .5s ease}
+  .form-done .badge{width:62px;height:62px;border-radius:50%;background:var(--signal-soft);color:var(--signal-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem}
+  .form-done h3{font-size:1.25rem;margin-bottom:.6rem;font-weight:900}
+  .form-done p{color:var(--ink-soft);font-size:.96rem;margin:0 auto;max-width:24rem}
+
+  /* ---------- フッター ---------- */
+  footer{background:var(--paper-2);border-top:1px solid var(--line);padding-block:clamp(2.5rem,5vw,3.5rem);font-size:.9rem}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:start}
+  .f-brand .brand{margin-bottom:.9rem}
+  .f-brand p{color:var(--ink-soft);max-width:30rem;font-size:.9rem;line-height:1.8;margin:0}
+  .f-meta{display:flex;flex-direction:column;gap:.55rem}
+  .f-meta a{color:var(--ink-soft);font-weight:500}
+  .f-meta a:hover{color:var(--blue)}
+  .f-priv{grid-column:1/-1;border-top:1px solid var(--line);margin-top:1.8rem;padding-top:1.6rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+  .f-priv p{margin:0;color:var(--ink-mute);font-size:.82rem;line-height:1.7;max-width:46rem}
+  .f-priv .copy{font-family:var(--ff-mono);font-size:.74rem;letter-spacing:.06em;color:var(--ink-mute);white-space:nowrap}
+
+  /* ---------- レスポンシブ ---------- */
+  @media(max-width:920px){
+    .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
+    .hero .manifest{max-width:520px}
+    .final .wrap{grid-template-columns:1fr;gap:2.5rem}
+    .why-grid,.risk-grid,.steps{grid-template-columns:1fr}
+    .step{padding:1.3rem 0}
+    .step:not(:last-child)::after{display:none}
+    .pipeline{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
+    .pl::before{display:none}
+  }
+  @media(max-width:560px){
+    .checklist{grid-template-columns:1fr}
+    .mf-grid{grid-template-columns:1fr;gap:.5rem}
+    .mf-route{flex-direction:row;height:30px}
+    .mf-route .line{width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--signal) 0 6px,transparent 6px 12px)}
+    .mf-route .chip{transform:translate(-50%,-50%) rotate(90deg)}
+    .pipeline{grid-template-columns:1fr;gap:1rem}
+    footer .wrap{grid-template-columns:1fr}
+    .f-priv{flex-direction:column;align-items:flex-start}
+    .hero-cta .btn{width:100%}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1!important;transform:none!important}
+    .panel.new .rows li{opacity:1!important;transform:none!important}
+  }
+
+  /* スクロール表示 */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ===== ヘッダー（ロゴ＋単一CTA・ナビなし） ===== -->
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="データの引越し屋さん トップへ">
+      <span class="glyph" aria-hidden="true"></span>
+      <span><b>データの引越し屋さん</b><small>BY YAMATO LLC</small></span>
+    </a>
+    <a class="btn sm" href="#shindan">無料診断を申し込む</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">SYSTEM MIGRATION&nbsp;<span class="jp">／ 中小製造業のための、システム“引っ越し”</span></p>
+      <h1>古い基幹システムを、<br><span class="hl">データも業務も止めずに</span>、<br>まるごと新しく。</h1>
+      <p class="lead">「保守も切れて、分かる人もいない」――そんな基幹システムの移行を、現状の診断から、新しい環境の用意、データと業務フローの移し替えまで、まるごと引き受けます。提案だけして去りません。実際の“引っ越し”まで、やり切ります。</p>
+      <div class="hero-cta">
+        <a class="btn" href="#shindan">無料で“引っ越せるか”診断する<span class="arr">→</span></a>
+        <a class="btn ghost" href="#flow">何をやってくれるの？</a>
+      </div>
+      <div class="trust-row">
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>診断は無料</span>
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>中小製造業に特化</span>
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>専門用語なしで伴走</span>
+      </div>
+    </div>
+
+    <!-- シグネチャ：移送票 -->
+    <div class="manifest reveal" aria-label="旧システムから新環境へのデータ移送イメージ">
+      <div class="mf-head">
+        <span class="t">移送票&nbsp;<span class="ja">／ データの引っ越し</span></span>
+        <span class="mf-status">IN&nbsp;TRANSIT</span>
+      </div>
+      <div class="mf-grid">
+        <div class="panel old">
+          <div class="ph"><b>旧システム</b><span class="tagk">保守切れ・オフコン</span></div>
+          <ul class="rows">
+            <li><span class="dot"></span>受発注データ</li>
+            <li><span class="dot"></span>在庫・部品マスタ</li>
+            <li><span class="dot"></span>仕入先・得意先台帳</li>
+            <li><span class="dot"></span>生産・出荷履歴</li>
+            <li><span class="dot"></span>請求・売掛データ</li>
+          </ul>
+        </div>
+        <div class="mf-route" aria-hidden="true">
+          <span class="line"></span>
+          <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <div class="panel new">
+          <div class="ph"><b>新環境</b><span class="tagk">クラウド</span></div>
+          <ul class="rows">
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mf-foot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
+        日々の業務を止めないよう、段階的に移送します。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 共感／問題提起 ===== -->
+<section class="sec alt" id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">SELF-CHECK&nbsp;<span class="jp">／ 思い当たること</span></p>
+      <h2 class="title">こんな状態のまま、<br>使い続けていませんか。</h2>
+    </div>
+    <div class="checklist reveal">
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>20年ほど前に入れたシステムを、だましだまし使い続けている</p></div>
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>メーカーの保守・サポートは、すでに終了している</p></div>
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>社内に「システムが分かる人」がいない（退職・高齢化）</p></div>
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>足りないところは、Excelや手作業で補っている</p></div>
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>新しいシステムに替えたいが、データを移せるのか分からない</p></div>
+      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>「いつ止まるか」と思いながら、手を打てずにいる</p></div>
+    </div>
+    <p class="after reveal">ひとつでも当てはまるなら、<span class="u">それは“引っ越し”を考えるサインです。</span></p>
+  </div>
+</section>
+
+<!-- ===== 放置のリスク ===== -->
+<section class="sec" id="risk">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">WHY NOW&nbsp;<span class="jp">／ 先送りの代償</span></p>
+      <h2 class="title">「まだ動いているから」が、<br>いちばん危ない。</h2>
+      <p>古いシステムは、壊れてから動くのでは間に合いません。放置するほど、三つのリスクが静かに大きくなります。</p>
+    </div>
+    <div class="risk-grid">
+      <div class="risk reveal">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+        <h3>止まれば、事業が止まる</h3>
+        <p>基幹システムが落ちれば、受発注・生産・出荷が一斉に止まります。一台のサーバーの不調が、会社全体を止めかねません。</p>
+      </div>
+      <div class="risk reveal">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>セキュリティの穴が放置される</h3>
+        <p>サポートが切れたシステムは、修正プログラムが提供されません。穴がふさがれないまま、ランサムウェア等の標的になりやすくなります。</p>
+      </div>
+      <div class="risk reveal">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></span>
+        <h3>先送りほど、高くつく</h3>
+        <p>当時を知る人がいなくなり、資料も散逸すると、移行はますます難しくなります。早く動くほど、手間も費用も小さく済みます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 解決：一気通貫3ステップ ===== -->
+<section class="sec alt" id="flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">WHAT WE DO&nbsp;<span class="jp">／ やること</span></p>
+      <h2 class="title">診断から移行まで、ぜんぶやります。</h2>
+    </div>
+    <p class="lead flow-intro reveal">わたしたちは「どうすべきか」を助言して終わる会社ではありません。現状を診て、新しい環境を用意し、データと業務を移し終えるところまで。手を動かす部分を、一気通貫で引き受けます。</p>
+    <div class="steps">
+      <div class="step s1 reveal">
+        <div class="num"><span>01</span></div>
+        <h3>現状を診断する</h3>
+        <p>どんなデータが、どのシステムに、どんな形で詰まっているのか。移せるのか、何が課題か。まずはここを、はっきりさせます。</p>
+        <span class="free"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>ここまで無料</span>
+      </div>
+      <div class="step s2 reveal">
+        <div class="num"><span>02</span></div>
+        <h3>新しい環境を用意する</h3>
+        <p>御社の規模と業務に合った移行先（クラウドが基本）を選び、構築します。大手向けの過剰な仕組みは持ち込みません。</p>
+      </div>
+      <div class="step s3 reveal">
+        <div class="num"><span>03</span></div>
+        <h3>データと業務を移す</h3>
+        <p>既存データの移し替えと、日々の業務フローの移行まで実行します。止めないよう、段階的に・並行で進めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== なぜここか ===== -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">WHY US&nbsp;<span class="jp">／ 選ぶ理由</span></p>
+      <h2 class="title">大手SIerでも、<br>コンサルだけの会社でもありません。</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal">
+        <div class="k">FOCUS</div>
+        <h3>中小製造業に特化</h3>
+        <p>100人規模の現場に合わせた、過不足のない移行を。大規模・高額な「大手のやり方」は持ち込まず、小回りで動きます。</p>
+      </div>
+      <div class="why reveal">
+        <div class="k">HANDS-ON</div>
+        <h3>コンサルで終わらず、実行まで</h3>
+        <p>レポートを渡して去る、はしません。新しい環境の構築も、データの移行も、こちらが手を動かして、移し終えるところまで。</p>
+      </div>
+      <div class="why reveal">
+        <div class="k">OPERATOR</div>
+        <h3>運営は大和合同会社</h3>
+        <p>「現場で手を動かす」ことを信条とするプロフェッショナル・ファームが運営しています。</p>
+        <a class="more" href="https://www.yamato.llc/about" target="_blank" rel="noopener">会社概要を見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="sec alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">FAQ&nbsp;<span class="jp">／ よくあるご不安</span></p>
+      <h2 class="title">頼む前に、気になること。</h2>
+    </div>
+    <div class="faq">
+      <details class="qa reveal" open>
+        <summary class="q"><span class="qmark">Q</span><span>うちの古いデータでも、移せますか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">まずは<strong>無料診断で「移せるか」を確認</strong>します。多くの場合、データの形式や中身を整えれば移行は可能です。可否と、どう移すかを最初にはっきりさせるので、いきなり大きな決断をする必要はありません。</div>
+      </details>
+      <details class="qa reveal">
+        <summary class="q"><span class="qmark">Q</span><span>移行の間、業務は止まりませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a"><strong>止めないことを前提に設計します。</strong>一度に全部ではなく段階的に移したり、新旧を並行して動かしたりして、日々の受発注や出荷への影響を最小限に抑えます。</div>
+      </details>
+      <details class="qa reveal">
+        <summary class="q"><span class="qmark">Q</span><span>費用が高くつきませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">中小規模に合わせた進め方をするため、大手に大規模発注するのとは考え方が違います。<strong>診断は無料</strong>。費用は現状を把握したうえで、必要な範囲だけお見積りします。先に金額だけが独り歩きすることはありません。</div>
+      </details>
+      <details class="qa reveal">
+        <summary class="q"><span class="qmark">Q</span><span>ITに詳しくないのですが、大丈夫ですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a"><strong>専門用語は使わずに、伴走します。</strong>「何を頼めばいいかも分からない」という状態からで大丈夫です。難しい部分はこちらで引き受け、判断に必要なことだけ、平易にお伝えします。</div>
+      </details>
+      <details class="qa reveal">
+        <summary class="q"><span class="qmark">Q</span><span>何から始めればいいですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">下の<strong>無料診断のお問い合わせ</strong>から、お気軽にどうぞ。御社のシステムの状況を伺い、引っ越せるかどうかを診断します。そこから先に進むかは、結果を見て決めていただけます。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 流れ ===== -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow">PROCESS&nbsp;<span class="jp">／ ご相談から移行までの流れ</span></p>
+      <h2 class="title">最初の一歩は、無料です。</h2>
+    </div>
+    <div class="pipeline reveal">
+      <div class="pl free"><div class="ring">1</div><h4>お問い合わせ</h4><span>無料診断の申込</span></div>
+      <div class="pl free"><div class="ring">2</div><h4>ヒアリング・診断</h4><span>現状の確認</span></div>
+      <div class="pl free"><div class="ring">3</div><h4>診断レポート</h4><span>可否と方針を提示</span></div>
+      <div class="pl paid"><div class="ring">4</div><h4>お見積り</h4><span>ご納得いただけたら</span></div>
+      <div class="pl paid"><div class="ring">5</div><h4>移行の実行</h4><span>データ・業務の移送</span></div>
+    </div>
+    <p class="pipeline-note reveal"><b>1〜3は無料です。</b>お見積りより先（4以降）は、内容にご納得いただいてから。診断だけで終えていただいても構いません。</p>
+  </div>
+</section>
+
+<!-- ===== 最終CTA＋フォーム ===== -->
+<section class="final" id="shindan">
+  <div class="wrap">
+    <div class="final-copy reveal">
+      <p class="eyebrow">FREE DIAGNOSIS&nbsp;<span class="jp">／ 無料診断</span></p>
+      <h2>まずは、<span class="hl">「引っ越せるか」</span>を<br>無料で確かめませんか。</h2>
+      <p class="lead">御社のシステムの状況を伺い、データを移せるかどうかを診断します。申し込みは1分。診断は無料。その先に進むかどうかは、結果を見てから決めていただけます。</p>
+      <div class="assure">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>診断とご相談は無料。費用は現状把握のあとだけ。</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>専門用語抜きで、状況だけ伺います。</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>無理な営業はいたしません。</div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <form id="shindan-form" novalidate>
+        <div class="fh">無料診断のお申し込み</div>
+        <div class="fs">※ <span id="reqcount">3</span>項目のご入力で送信できます</div>
+
+        <div class="field" id="f-company">
+          <label for="company">会社名<span class="req">必須</span></label>
+          <input type="text" id="company" name="company" placeholder="例：○○製作所" autocomplete="organization">
+          <span class="msg">会社名をご入力ください</span>
+        </div>
+        <div class="field" id="f-name">
+          <label for="name">お名前<span class="req">必須</span></label>
+          <input type="text" id="name" name="name" placeholder="例：山田 太郎" autocomplete="name">
+          <span class="msg">お名前をご入力ください</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">メールアドレス<span class="req">必須</span></label>
+          <input type="email" id="email" name="email" placeholder="例：yamada@example.co.jp" autocomplete="email" inputmode="email">
+          <span class="msg">正しいメールアドレスをご入力ください</span>
+        </div>
+        <div class="field">
+          <label for="tel">電話番号<span class="opt">任意</span></label>
+          <input type="tel" id="tel" name="tel" placeholder="例：026-000-0000" autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="field">
+          <label for="detail">今お使いのシステム・お困りごと<span class="opt">任意</span></label>
+          <textarea id="detail" name="detail" placeholder="例：富士通のオフコンを20年使用。保守が切れていて不安。受発注と在庫のデータを移したい。"></textarea>
+        </div>
+
+        <button type="submit" class="btn">無料診断を申し込む<span class="arr">→</span></button>
+        <p class="privacy">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          ご入力いただいた内容は、本サービスのご連絡のみに利用し、第三者には提供しません。
+        </p>
+      </form>
+
+      <div class="form-done" id="form-done" role="status" aria-live="polite">
+        <div class="badge"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>お申し込みありがとうございます。</h3>
+        <p>担当者より、3営業日以内にご連絡いたします。今しばらくお待ちくださいませ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="wrap">
+    <div class="f-brand">
+      <a class="brand" href="#top">
+        <span class="glyph" aria-hidden="true"></span>
+        <span><b>データの引越し屋さん</b><small>BY YAMATO LLC</small></span>
+      </a>
+      <p>古い基幹システムの移行を、診断から実行まで引き受ける、中小製造業のための“引っ越し”サービスです。</p>
+    </div>
+    <nav class="f-meta" aria-label="フッター">
+      <a href="https://www.yamato.llc/about" target="_blank" rel="noopener">運営会社（大和合同会社）</a>
+      <a href="#shindan">無料診断のお申し込み</a>
+      <a href="#faq">よくあるご不安</a>
+    </nav>
+    <div class="f-priv">
+      <p>取得した個人情報は、お問い合わせ・診断のご連絡の目的にのみ利用し、ご本人の同意なく第三者に提供することはありません。</p>
+      <span class="copy">© 2026 YAMATO LLC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var prefersReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ヘッダーの状態切替（スクロールでCTA表示）
+  var top = document.getElementById("top");
+  function onScroll(){ top.classList.toggle("scrolled", window.scrollY > 80); }
+  onScroll();
+  window.addEventListener("scroll", onScroll, {passive:true});
+
+  // スクロール表示
+  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if(prefersReduced || !("IntersectionObserver" in window)){
+    reveals.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -8% 0px"});
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  // フォーム：その場で検証→サンクス表示（送信先は本番でGoogleフォーム等に接続）
+  var form = document.getElementById("shindan-form");
+  var done = document.getElementById("form-done");
+  function setErr(id, on){ document.getElementById(id).classList.toggle("err", on); }
+  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var c = document.getElementById("company").value.trim();
+    var n = document.getElementById("name").value.trim();
+    var e = document.getElementById("email").value.trim();
+    var okC = !!c, okN = !!n, okE = isEmail(e);
+    setErr("f-company", !okC); setErr("f-name", !okN); setErr("f-email", !okE);
+
+    if(okC && okN && okE){
+      form.style.display = "none";
+      done.classList.add("show");
+      done.scrollIntoView({behavior: prefersReduced ? "auto" : "smooth", block:"center"});
+    } else {
+      var first = form.querySelector(".field.err input");
+      if(first) first.focus();
+    }
+  });
+
+  // 入力で都度エラー解除
+  ["company","name","email"].forEach(function(k){
+    document.getElementById(k).addEventListener("input", function(){ setErr("f-"+k, false); });
+  });
+})();
+</script>
+</body>
+</html>
