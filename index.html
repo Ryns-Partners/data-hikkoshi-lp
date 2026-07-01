@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>データの引越し屋さん｜中小製造業のための、基幹システム移行サービス</title>
-<meta name="description" content="保守も切れて、分かる人もいない。そんな古い基幹システムを、現状診断から新環境の用意、データと業務フローの移し替えまで、まるごと引き受けます。中小製造業に特化。診断は無料です。運営：大和合同会社">
+<title>中小製造業の基幹システム移行・入れ替え｜データの引越し屋さん</title>
+<meta name="description" content="保守が切れた古い基幹システムを、現状診断から新環境の構築、データ移行までまるごと代行。中小製造業に特化。オフコンやレガシーシステムの入れ替えもご相談ください。診断は無料。運営：大和合同会社。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="中小製造業の基幹システム移行・入れ替え｜データの引越し屋さん">
+<meta property="og:description" content="保守が切れた古い基幹システムを、診断から新環境の構築、データ移行までまるごと代行します。中小製造業に特化。診断は無料です。">
+<meta property="og:locale" content="ja_JP">
+<meta name="theme-color" content="#14213A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -17,12 +22,14 @@
     --paper-2:#E9ECE5;      /* 一段沈んだ面 */
     --surface:#FFFFFF;      /* カード面 */
     --line:#D8DCD2;         /* ヘアライン */
+    --line-2:#C9CDC2;       /* 一段濃いヘアライン */
     --blue:#2A57A4;         /* スチールブルー・構造/リンク */
     --blue-deep:#1C3C77;
     --blue-soft:#E7EDF7;
     --signal:#DE8E27;       /* 琥珀・搬送の信号色（CTA/経路） */
     --signal-deep:#C2761A;
     --signal-soft:#FBEFD8;
+    --signal-line:#F0D9A8;
     --old:#9AA0AE;          /* 旧システムの色味 */
 
     --maxw:1120px;
@@ -35,7 +42,7 @@
 
     --sh-sm:0 1px 2px rgba(20,33,58,.06);
     --sh-card:0 1px 2px rgba(20,33,58,.05), 0 10px 30px rgba(20,33,58,.07);
-    --sh-lift:0 2px 4px rgba(20,33,58,.06), 0 18px 44px rgba(20,33,58,.12);
+    --sh-lift:0 2px 4px rgba(20,33,58,.06), 0 22px 50px rgba(20,33,58,.14);
 
     --ff-jp:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
     --ff-lat:"Archivo",var(--ff-jp);
@@ -43,7 +50,7 @@
   }
 
   *,*::before,*::after{box-sizing:border-box}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:80px}
   body{
     margin:0;background:var(--paper);color:var(--ink);
     font-family:var(--ff-jp);font-weight:400;line-height:1.9;
@@ -56,26 +63,27 @@
   a:hover{text-decoration:underline}
 
   .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad-x)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   /* ---------- 共通パーツ ---------- */
   .eyebrow{
     font-family:var(--ff-mono);font-weight:500;font-size:.74rem;
     letter-spacing:.16em;color:var(--blue);text-transform:uppercase;
-    display:inline-flex;align-items:center;gap:.55em;margin:0 0 1.1rem;
+    display:inline-flex;align-items:center;gap:.55em;margin:0 0 1.15rem;
   }
-  .eyebrow::before{content:"";width:1.6rem;height:1px;background:var(--blue);opacity:.55}
-  .eyebrow .jp{font-family:var(--ff-jp);letter-spacing:.08em;text-transform:none;font-weight:500}
+  .eyebrow::before{content:"";width:1.7rem;height:1px;background:currentColor;opacity:.55}
+  .eyebrow .jp{font-family:var(--ff-jp);letter-spacing:.08em;text-transform:none;font-weight:500;color:var(--ink-soft)}
 
-  h1,h2,h3{margin:0;line-height:1.32;font-weight:900;letter-spacing:.005em}
-  h2.title{font-size:clamp(1.55rem,3.6vw,2.4rem);letter-spacing:-.005em}
-  .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--ink-soft);font-weight:500;line-height:1.95}
+  h1,h2,h3{margin:0;line-height:1.32;font-weight:900;letter-spacing:.005em;text-wrap:balance}
+  h2.title{font-size:clamp(1.6rem,3.6vw,2.45rem);letter-spacing:-.008em;line-height:1.34}
+  .lead{font-size:clamp(1.02rem,1.5vw,1.2rem);color:var(--ink-soft);font-weight:500;line-height:1.95;text-wrap:pretty}
 
   .btn{
     --bg:var(--signal);--fg:#fff;
     display:inline-flex;align-items:center;justify-content:center;gap:.6em;
     font-family:var(--ff-jp);font-weight:700;font-size:1.02rem;line-height:1.2;
     background:var(--bg);color:var(--fg);border:none;cursor:pointer;
-    padding:1rem 1.8rem;border-radius:var(--r-btn);
+    padding:1.05rem 1.85rem;border-radius:var(--r-btn);min-height:52px;
     box-shadow:0 1px 2px rgba(20,33,58,.18), 0 10px 22px rgba(194,118,26,.28);
     transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
     text-decoration:none;text-align:center;
@@ -84,14 +92,14 @@
   .btn:active{transform:translateY(0)}
   .btn .arr{font-family:var(--ff-mono);font-weight:600;transition:transform .18s ease}
   .btn:hover .arr{transform:translateX(3px)}
-  .btn.ghost{--bg:transparent;--fg:var(--ink);box-shadow:none;border:1.5px solid var(--line);padding:.85rem 1.4rem;font-size:.95rem}
+  .btn.ghost{--bg:transparent;--fg:var(--ink);box-shadow:none;border:1.5px solid var(--line-2);padding:.9rem 1.4rem;font-size:.95rem;min-height:0}
   .btn.ghost:hover{background:var(--surface);border-color:var(--ink-mute);transform:none;box-shadow:var(--sh-sm)}
-  .btn.sm{padding:.7rem 1.15rem;font-size:.9rem;box-shadow:0 1px 2px rgba(20,33,58,.16), 0 6px 14px rgba(194,118,26,.24)}
+  .btn.sm{padding:.72rem 1.2rem;font-size:.9rem;min-height:0;box-shadow:0 1px 2px rgba(20,33,58,.16), 0 6px 14px rgba(194,118,26,.24)}
 
-  .cta-note{font-family:var(--ff-mono);font-size:.78rem;color:var(--ink-mute);margin-top:.9rem;letter-spacing:.02em}
+  .cta-note{font-family:var(--ff-mono);font-size:.78rem;color:var(--ink-mute);margin:.9rem 0 0;letter-spacing:.02em}
 
-  :where(a,button,summary,input,textarea):focus-visible{
-    outline:3px solid var(--blue);outline-offset:2px;border-radius:4px;
+  :where(a,button,summary,input,textarea,[tabindex]):focus-visible{
+    outline:3px solid var(--blue);outline-offset:3px;border-radius:5px;
   }
 
   /* ---------- ヘッダー（ナビは置かない／ロゴ＋単一CTA） ---------- */
@@ -105,13 +113,13 @@
   .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
   .brand:hover{text-decoration:none}
   .brand .glyph{
-    width:30px;height:30px;border-radius:8px;flex:none;
+    width:32px;height:32px;border-radius:8px;flex:none;
     background:var(--ink);position:relative;box-shadow:var(--sh-sm);
   }
   .brand .glyph::before{content:"";position:absolute;inset:7px;border:1.5px solid var(--signal);border-radius:3px}
-  .brand .glyph::after{content:"";position:absolute;left:13px;top:13.5px;width:8px;height:8px;background:var(--paper);border:1.5px solid var(--signal);border-radius:2px;transform:translate(1.5px,1.5px)}
-  .brand b{font-family:var(--ff-jp);font-weight:900;font-size:1.04rem;letter-spacing:.01em;line-height:1}
-  .brand small{display:block;font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.12em;color:var(--ink-mute);margin-top:.18rem;font-weight:500}
+  .brand .glyph::after{content:"";position:absolute;left:14px;top:14px;width:8px;height:8px;background:var(--paper);border:1.5px solid var(--signal);border-radius:2px;transform:translate(1.5px,1.5px)}
+  .brand b{font-family:var(--ff-jp);font-weight:900;font-size:1.05rem;letter-spacing:.01em;line-height:1}
+  .brand small{display:block;font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.12em;color:var(--ink-mute);margin-top:.2rem;font-weight:500}
   .top .btn{transition:transform .18s ease, box-shadow .18s ease, background .18s ease, opacity .25s ease, visibility .25s ease}
   .top:not(.scrolled) .btn{opacity:0;visibility:hidden;transform:translateY(-4px)}
 
@@ -120,7 +128,7 @@
   .hero::before{
     content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
     background:
-      radial-gradient(120% 90% at 88% -10%, rgba(42,87,164,.07), transparent 60%),
+      radial-gradient(120% 90% at 88% -10%, rgba(42,87,164,.08), transparent 60%),
       linear-gradient(180deg, #F5F6F2 0%, var(--paper) 46%);
   }
   /* 方眼（設計図/書類の地） */
@@ -131,73 +139,92 @@
     background-image:linear-gradient(rgba(20,33,58,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,58,.045) 1px,transparent 1px);
     background-size:30px 30px;
   }
-  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,4rem);align-items:center}
+  .hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(2rem,4vw,4rem);align-items:center}
 
   .hero h1{
-    font-size:clamp(2rem,5.2vw,3.5rem);line-height:1.28;letter-spacing:-.01em;
-    margin:.2rem 0 1.4rem;
+    font-size:clamp(2rem,5.1vw,3.45rem);line-height:1.26;letter-spacing:-.012em;
+    margin:.2rem 0 1.5rem;
   }
   .hero h1 .hl{
-    background:linear-gradient(180deg,transparent 60%,var(--signal-soft) 60% 92%,transparent 92%);
+    background:linear-gradient(180deg,transparent 58%,var(--signal-soft) 58% 94%,transparent 94%);
     -webkit-box-decoration-break:clone;box-decoration-break:clone;padding-inline:.05em;
   }
-  .hero .lead{max-width:34em}
-  .hero-cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem 1.2rem;align-items:center}
-  .trust-row{margin-top:1.7rem;display:flex;flex-wrap:wrap;gap:.5rem .7rem}
+  .hero .lead{max-width:33em}
+  .hero-cta{margin-top:2.1rem;display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:center}
+  .trust-row{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.5rem .7rem}
   .pill{
     font-family:var(--ff-jp);font-weight:500;font-size:.82rem;color:var(--ink-soft);
     background:var(--surface);border:1px solid var(--line);border-radius:999px;
-    padding:.42rem .85rem;display:inline-flex;align-items:center;gap:.45em;box-shadow:var(--sh-sm);
+    padding:.44rem .9rem;display:inline-flex;align-items:center;gap:.45em;box-shadow:var(--sh-sm);
   }
-  .pill svg{flex:none}
+  .pill svg{flex:none;color:var(--blue)}
 
-  /* ---------- シグネチャ：移送票 ---------- */
+  /* ---------- シグネチャ：移送票（唯一の大胆な1点） ---------- */
   .manifest{
-    background:var(--surface);border:1px solid var(--line);border-radius:18px;
-    box-shadow:var(--sh-lift);padding:1.15rem 1.15rem 1.25rem;position:relative;
+    margin:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;
+    box-shadow:var(--sh-lift);padding:1.25rem 1.25rem 1.35rem;position:relative;overflow:hidden;
   }
-  .mf-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.1rem .25rem .9rem;border-bottom:1px dashed var(--line);margin-bottom:1rem}
-  .mf-head .t{font-family:var(--ff-mono);font-weight:600;font-size:.82rem;letter-spacing:.06em;color:var(--ink);display:flex;align-items:center;gap:.5em}
-  .mf-head .t .ja{font-family:var(--ff-jp);font-weight:700;letter-spacing:.02em}
-  .mf-status{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.08em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid #F0D9A8;padding:.2rem .55rem;border-radius:999px;font-weight:600}
+  .manifest::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--old) 0 42%,var(--signal) 42% 58%,var(--blue) 58% 100%)}
+  .mf-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.35rem .15rem .55rem}
+  .mf-title{font-family:var(--ff-mono);font-weight:600;font-size:.9rem;letter-spacing:.05em;color:var(--ink);display:flex;align-items:center;gap:.55em}
+  .mf-title .mk{width:16px;height:16px;border-radius:4px;background:var(--ink);position:relative;flex:none}
+  .mf-title .mk::after{content:"";position:absolute;inset:3.5px;border:1.5px solid var(--signal);border-radius:2px}
+  .mf-title .ja{font-family:var(--ff-jp);font-weight:700;letter-spacing:.02em;font-size:.86rem;color:var(--ink-soft)}
+  .mf-route-code{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.1em;color:var(--ink-mute);font-weight:500;white-space:nowrap}
 
-  .mf-grid{display:grid;grid-template-columns:1fr 34px 1fr;align-items:stretch;gap:.4rem}
-  .panel{border-radius:12px;padding:.8rem .8rem .85rem;min-width:0}
-  .panel.old{background:#F4F5F2;border:1.5px dashed #C9CDC2}
+  .mf-meta{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.15rem .15rem .95rem;margin-bottom:1rem;border-bottom:1px dashed var(--line-2)}
+  .mf-status{font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.09em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid var(--signal-line);padding:.24rem .6rem;border-radius:999px;font-weight:600;display:inline-flex;align-items:center;gap:.5em}
+  .mf-status .blip{width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none;box-shadow:0 0 0 0 rgba(222,142,39,.5);animation:blip 1.9s ease-out infinite}
+  @keyframes blip{0%{box-shadow:0 0 0 0 rgba(222,142,39,.5)}70%,100%{box-shadow:0 0 0 6px rgba(222,142,39,0)}}
+  .mf-count{font-family:var(--ff-mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.03em;font-weight:500}
+  .mf-count b{color:var(--blue-deep);font-weight:600}
+
+  .mf-grid{display:grid;grid-template-columns:1fr 36px 1fr;align-items:stretch;gap:.4rem}
+  .panel{border-radius:12px;padding:.85rem .85rem .9rem;min-width:0}
+  .panel.old{background:#F4F5F2;border:1.5px dashed var(--line-2)}
   .panel.new{background:linear-gradient(180deg,#F8FAFF,#FFFFFF);border:1.5px solid var(--blue-soft);box-shadow:inset 0 0 0 1px rgba(42,87,164,.04)}
-  .panel .ph{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem;margin-bottom:.65rem}
-  .panel .ph b{font-family:var(--ff-jp);font-weight:700;font-size:.92rem;letter-spacing:.01em}
+  .panel .ph{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem;margin-bottom:.7rem}
+  .panel .ph b{font-family:var(--ff-jp);font-weight:700;font-size:.94rem;letter-spacing:.01em}
   .panel.old .ph b{color:var(--ink-soft)}
   .panel.new .ph b{color:var(--blue-deep)}
-  .panel .tagk{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute)}
+  .panel .tagk{font-family:var(--ff-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute)}
   .panel.new .tagk{color:var(--blue)}
 
   .rows{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.34rem}
   .rows li{
     font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.01em;line-height:1.3;
-    display:flex;align-items:center;gap:.4em;padding:.32rem .45rem;border-radius:5px;
+    display:flex;align-items:center;gap:.4em;padding:.34rem .48rem;border-radius:5px;
   }
   .panel.old .rows li{background:#fff;border:1px solid #E4E6DF;color:var(--old)}
   .panel.old .rows li .dot{width:6px;height:6px;border-radius:50%;background:#C4C8BD;flex:none}
   .panel.new .rows li{background:var(--blue-soft);border:1px solid #D5E1F4;color:var(--blue-deep);font-weight:500;animation:rowIn .55s cubic-bezier(.2,.7,.3,1) backwards}
-  .panel.new .rows li:nth-child(1){animation-delay:.25s}
-  .panel.new .rows li:nth-child(2){animation-delay:.45s}
-  .panel.new .rows li:nth-child(3){animation-delay:.65s}
-  .panel.new .rows li:nth-child(4){animation-delay:.85s}
-  .panel.new .rows li:nth-child(5){animation-delay:1.05s}
+  .panel.new .rows li:nth-child(1){animation-delay:.30s}
+  .panel.new .rows li:nth-child(2){animation-delay:.48s}
+  .panel.new .rows li:nth-child(3){animation-delay:.66s}
+  .panel.new .rows li:nth-child(4){animation-delay:.84s}
+  .panel.new .rows li:nth-child(5){animation-delay:1.02s}
   .panel.new .rows li .ck{flex:none;color:var(--blue)}
   @keyframes rowIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
 
   .mf-route{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
-  .mf-route .line{width:2px;flex:1;background:repeating-linear-gradient(180deg,var(--signal) 0 6px,transparent 6px 12px);opacity:.5}
+  .mf-route .line{width:2px;flex:1;background:repeating-linear-gradient(180deg,var(--signal) 0 6px,transparent 6px 12px);opacity:.55}
   .mf-route .chip{
     position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:30px;height:30px;border-radius:50%;background:var(--signal);color:#fff;
-    display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(194,118,26,.4);
+    width:32px;height:32px;border-radius:50%;background:var(--signal);color:#fff;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(194,118,26,.42);
     animation:pulse 2.4s ease-in-out infinite;
   }
-  @keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(194,118,26,.4)}50%{box-shadow:0 4px 12px rgba(194,118,26,.4),0 0 0 7px rgba(222,142,39,.12)}}
-  .mf-foot{margin-top:.95rem;padding-top:.75rem;border-top:1px dashed var(--line);display:flex;align-items:center;gap:.5em;font-family:var(--ff-jp);font-size:.78rem;color:var(--ink-soft);font-weight:500}
+  @keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(194,118,26,.42)}50%{box-shadow:0 4px 12px rgba(194,118,26,.42),0 0 0 7px rgba(222,142,39,.12)}}
+
+  .mf-progress{margin-top:1.05rem}
+  .mf-progress .pl-head{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;margin-bottom:.5rem}
+  .mf-progress .lbl{font-family:var(--ff-jp);font-size:.78rem;font-weight:600;color:var(--ink-soft)}
+  .mf-progress .val{font-family:var(--ff-mono);font-size:.72rem;font-weight:600;color:var(--signal-deep);letter-spacing:.04em}
+  .mf-progress .track{height:7px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line);overflow:hidden}
+  .mf-progress .bar{display:block;height:100%;width:100%;border-radius:inherit;background:linear-gradient(90deg,var(--signal),var(--signal-deep));transform-origin:left;animation:fill 1.5s cubic-bezier(.2,.7,.3,1) .35s backwards}
+  @keyframes fill{from{transform:scaleX(.05)}to{transform:scaleX(1)}}
+
+  .mf-foot{margin-top:1rem;padding-top:.8rem;border-top:1px dashed var(--line-2);display:flex;align-items:center;gap:.55em;font-family:var(--ff-jp);font-size:.8rem;color:var(--ink-soft);font-weight:500}
   .mf-foot svg{flex:none;color:var(--signal-deep)}
 
   /* ---------- セクション地 ---------- */
@@ -207,61 +234,83 @@
   .sec-head{max-width:42rem;margin-bottom:clamp(2.2rem,4vw,3.2rem)}
   .sec-head.center{margin-inline:auto;text-align:center}
   .sec-head.center .eyebrow{justify-content:center}
-  .sec-head .title + p{margin:1rem 0 0;color:var(--ink-soft);font-size:1.04rem;font-weight:500}
+  .sec-head .title + p{margin:1.05rem 0 0;color:var(--ink-soft);font-size:1.04rem;font-weight:500;line-height:1.9;text-wrap:pretty}
 
   /* 共感：チェックリスト */
   .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem}
   .check{
     display:flex;gap:.85rem;align-items:flex-start;background:var(--surface);
-    border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.1rem;box-shadow:var(--sh-sm);
+    border:1px solid var(--line);border-radius:12px;padding:1.05rem 1.15rem;box-shadow:var(--sh-sm);
+    transition:border-color .2s ease, box-shadow .2s ease;
   }
+  .check:hover{border-color:var(--line-2);box-shadow:var(--sh-card)}
   .check .bx{
-    flex:none;width:24px;height:24px;border-radius:6px;border:1.5px solid var(--line);
-    background:var(--paper);display:flex;align-items:center;justify-content:center;margin-top:.15rem;color:var(--signal-deep);
+    flex:none;width:24px;height:24px;border-radius:6px;border:1.5px solid var(--signal-line);
+    background:var(--signal-soft);display:flex;align-items:center;justify-content:center;margin-top:.15rem;color:var(--signal-deep);
   }
   .check p{margin:0;font-size:.98rem;font-weight:500;line-height:1.7}
-  .checklist + .after{margin-top:1.9rem;font-size:1.05rem;font-weight:700;color:var(--ink);text-align:center}
+  .checklist + .after{margin-top:2rem;font-size:1.08rem;font-weight:700;color:var(--ink);text-align:center;text-wrap:balance}
   .after .u{box-shadow:inset 0 -.5em 0 var(--signal-soft)}
 
   /* リスク：3カード */
   .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
   .risk{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
-    padding:1.6rem 1.5rem;box-shadow:var(--sh-card);position:relative;overflow:hidden;
+    padding:1.7rem 1.5rem;box-shadow:var(--sh-card);position:relative;overflow:hidden;
   }
   .risk::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--signal)}
-  .risk .ic{width:44px;height:44px;border-radius:11px;background:var(--signal-soft);color:var(--signal-deep);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem}
-  .risk h3{font-size:1.18rem;margin-bottom:.55rem;font-weight:700}
-  .risk p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
+  .risk .ic{width:46px;height:46px;border-radius:12px;background:var(--signal-soft);color:var(--signal-deep);display:flex;align-items:center;justify-content:center;margin-bottom:1.15rem}
+  .risk h3{font-size:1.19rem;margin-bottom:.6rem;font-weight:700;line-height:1.45}
+  .risk p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.85}
 
   /* 解決：一気通貫3ステップ */
-  .flow-intro{max-width:40rem;margin-bottom:2.6rem}
+  .flow-intro{max-width:40rem;margin-bottom:2.7rem}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
-  .step{position:relative;padding:0 1.4rem}
+  .step{position:relative;padding:0 1.5rem}
+  .step:first-child{padding-left:0}
+  .step:last-child{padding-right:0}
   .step:not(:last-child)::after{
     content:"";position:absolute;top:34px;right:-12px;width:24px;height:24px;z-index:2;
     background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23DE8E27' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
   }
   .step .num{
     font-family:var(--ff-mono);font-weight:600;font-size:.82rem;letter-spacing:.05em;
-    width:68px;height:68px;border-radius:16px;background:var(--ink);color:#fff;
-    display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;
+    width:70px;height:70px;border-radius:16px;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;
     box-shadow:var(--sh-card);position:relative;
   }
-  .step .num span{font-size:1.55rem;font-weight:700;line-height:1}
+  .step .num span{font-size:1.6rem;font-weight:700;line-height:1}
   .step.s2 .num{background:var(--blue-deep)}
   .step.s3 .num{background:var(--signal-deep)}
-  .step h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700}
-  .step p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
-  .step .free{display:inline-flex;align-items:center;gap:.4em;margin-top:.85rem;font-family:var(--ff-mono);font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid #F0D9A8;padding:.25rem .6rem;border-radius:999px}
+  .step h3{font-size:1.21rem;margin-bottom:.6rem;font-weight:700}
+  .step p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.85}
+  .step .free{display:inline-flex;align-items:center;gap:.4em;margin-top:.9rem;font-family:var(--ff-mono);font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--signal-deep);background:var(--signal-soft);border:1px solid var(--signal-line);padding:.26rem .62rem;border-radius:999px}
 
   /* なぜここか */
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:.5rem}
-  .why{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:1.7rem 1.5rem;box-shadow:var(--sh-card)}
-  .why .k{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase;margin-bottom:.9rem}
-  .why h3{font-size:1.16rem;margin-bottom:.6rem;font-weight:700;line-height:1.5}
-  .why p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.8}
-  .why .more{display:inline-block;margin-top:.85rem;font-family:var(--ff-jp);font-weight:600;font-size:.9rem}
+  .why{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:1.75rem 1.55rem;box-shadow:var(--sh-card)}
+  .why .k{font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;color:var(--blue);text-transform:uppercase;margin-bottom:.95rem;display:inline-block}
+  .why h3{font-size:1.17rem;margin-bottom:.6rem;font-weight:700;line-height:1.5}
+  .why p{margin:0;color:var(--ink-soft);font-size:.96rem;line-height:1.85}
+  .why .more{display:inline-flex;align-items:center;gap:.35em;margin-top:.9rem;font-family:var(--ff-jp);font-weight:600;font-size:.9rem}
+  .why .more:hover{text-decoration:none;color:var(--blue-deep)}
+  .why .more .arr{font-family:var(--ff-mono)}
+
+  /* ---------- 中盤CTA（バンド） ---------- */
+  .cta-band{background:var(--paper-2);border-block:1px solid var(--line)}
+  .cta-band .wrap{padding-block:clamp(2.5rem,5vw,3.4rem)}
+  .cta-band-inner{
+    display:flex;align-items:center;justify-content:space-between;gap:1.4rem 2.6rem;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--signal);
+    border-radius:var(--r-card);padding:clamp(1.5rem,3vw,2.1rem) clamp(1.5rem,3vw,2.3rem);box-shadow:var(--sh-card);
+  }
+  .cta-band-copy{max-width:36rem;flex:1 1 22rem}
+  .cta-band-copy .eyebrow{margin-bottom:.7rem}
+  .cta-band-copy h2{font-size:clamp(1.28rem,2.5vw,1.72rem);line-height:1.42}
+  .cta-band-copy h2 .hl{box-shadow:inset 0 -.48em 0 var(--signal-soft)}
+  .cta-band-copy p{margin:.7rem 0 0;color:var(--ink-soft);font-size:.97rem;line-height:1.8}
+  .cta-band-act{flex:none;display:flex;flex-direction:column;align-items:flex-start}
+  .cta-band-act .cta-note{margin-top:.75rem}
 
   /* FAQ */
   .faq{max-width:48rem;margin-inline:auto;display:flex;flex-direction:column;gap:.7rem}
@@ -279,38 +328,43 @@
   .qa .a strong{color:var(--ink);font-weight:700}
 
   /* 流れ */
-  .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;counter-reset:p}
+  .pipeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem}
   .pl{position:relative;text-align:center;padding:.4rem .3rem}
   .pl .ring{
-    width:50px;height:50px;border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;
-    font-family:var(--ff-mono);font-weight:600;font-size:1rem;background:var(--surface);border:2px solid var(--line);color:var(--ink);position:relative;z-index:1;
+    width:52px;height:52px;border-radius:50%;margin:0 auto .85rem;display:flex;align-items:center;justify-content:center;
+    font-family:var(--ff-mono);font-weight:600;font-size:1.05rem;background:var(--surface);border:2px solid var(--line-2);color:var(--ink);position:relative;z-index:1;
   }
+  .pl.free .ring{border-color:var(--blue);color:var(--blue-deep)}
   .pl.paid .ring{border-color:var(--signal);color:var(--signal-deep)}
-  .pl::before{content:"";position:absolute;top:25px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .pl::before{content:"";position:absolute;top:26px;left:-50%;width:100%;height:2px;background:var(--line-2);z-index:0}
   .pl:first-child::before{display:none}
-  .pl h4{font-size:.94rem;margin:0 0 .25rem;font-weight:700;line-height:1.4}
-  .pl span{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.04em;color:var(--ink-mute)}
+  .pl h3{font-size:.95rem;margin:0 0 .28rem;font-weight:700;line-height:1.4}
+  .pl span{font-family:var(--ff-mono);font-size:.66rem;letter-spacing:.03em;color:var(--ink-mute)}
   .pl.free span{color:var(--blue)}
-  .pipeline-note{margin-top:2rem;text-align:center;font-size:.92rem;color:var(--ink-soft)}
+  .pipeline-note{margin-top:2.1rem;text-align:center;font-size:.94rem;color:var(--ink-soft);text-wrap:pretty}
   .pipeline-note b{color:var(--signal-deep)}
 
   /* ---------- 最終CTA＋フォーム ---------- */
   .final{background:var(--ink);color:#EAEDF4;position:relative;overflow:hidden}
   .final::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent);mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent)}
   .final .wrap{position:relative;z-index:1}
-  .final .final-copy{max-width:640px;margin:0 auto clamp(2.2rem,4vw,3rem);text-align:center}
+  .final .final-copy{max-width:660px;margin:0 auto clamp(2.2rem,4vw,3rem);text-align:center}
   .final .eyebrow{color:var(--signal);justify-content:center}
-  .final .eyebrow::before{background:var(--signal)}
-  .final h2{font-size:clamp(1.7rem,3.6vw,2.5rem);color:#fff;line-height:1.34;margin-bottom:1.1rem}
+  .final .eyebrow .jp{color:#B9C1D4}
+  .final h2{font-size:clamp(1.7rem,3.6vw,2.5rem);color:#fff;line-height:1.34;margin-bottom:1.15rem}
   .final h2 .hl{color:var(--signal)}
-  .final .lead{color:#B9C1D4}
-  .final .assure{margin:1.6rem auto 0;max-width:460px;display:flex;flex-direction:column;gap:.7rem;text-align:left}
-  .final .assure div{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem;color:#D4DAE6;font-weight:500}
-  .final .assure svg{flex:none;color:var(--signal);margin-top:.18rem}
+  .final .lead{color:#C2CAD9}
+  .final .assure{margin:1.7rem auto 0;max-width:480px;display:grid;gap:.7rem;text-align:left}
+  .final .assure div{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem;color:#D4DAE6;font-weight:500;line-height:1.7}
+  .final .assure svg{flex:none;color:var(--signal);margin-top:.28rem}
 
-  .form-embed{max-width:720px;margin:0 auto;background:var(--surface);border-radius:18px;box-shadow:var(--sh-lift);overflow:hidden;padding:.5rem}
-  .form-embed iframe{display:block;width:100%;border:0;border-radius:14px;background:#fff;height:1320px}
+  .form-embed{max-width:720px;margin:0 auto;background:var(--surface);border-radius:18px;box-shadow:var(--sh-lift);overflow:hidden;padding:.5rem;position:relative}
+  .form-embed .fe-tab{display:flex;align-items:center;gap:.5em;justify-content:center;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink-mute);text-transform:uppercase;padding:.55rem 0 .5rem}
+  .form-embed .fe-tab .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);flex:none}
+  .form-embed iframe{display:block;width:100%;border:0;border-radius:14px;background:#fff;height:1360px}
   .form-embed .loading{font-family:var(--ff-mono);font-size:.85rem;color:var(--ink-mute);padding:1.2rem;text-align:center}
+  .form-fallback{text-align:center;color:#B9C1D4;font-size:.9rem;margin:1.4rem auto 0;max-width:520px}
+  .form-fallback a{color:var(--signal);font-weight:600}
 
   /* ---------- フッター ---------- */
   footer{background:var(--paper-2);border-top:1px solid var(--line);padding-block:clamp(2.5rem,5vw,3.5rem);font-size:.9rem}
@@ -327,36 +381,49 @@
   /* ---------- レスポンシブ ---------- */
   @media(max-width:920px){
     .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
-    .hero .manifest{max-width:520px}
+    .hero-copy{max-width:640px}
+    .hero .manifest{max-width:540px;margin-inline:auto}
     .why-grid,.risk-grid,.steps{grid-template-columns:1fr}
-    .step{padding:1.3rem 0}
+    .step{padding:1.4rem 0}
+    .step:first-child{padding-top:0}
     .step:not(:last-child)::after{display:none}
-    .pipeline{grid-template-columns:repeat(2,1fr);gap:1.6rem 1rem}
+    .pipeline{grid-template-columns:repeat(2,1fr);gap:1.7rem 1rem}
     .pl::before{display:none}
+    .cta-band-inner{gap:1.2rem}
+    .cta-band-act{width:100%}
+    .cta-band-act .btn{width:100%}
   }
   @media(max-width:560px){
+    :root{--sec-y:clamp(3.2rem,11vw,5rem)}
     .checklist{grid-template-columns:1fr}
     .mf-grid{grid-template-columns:1fr;gap:.5rem}
-    .mf-route{flex-direction:row;height:30px}
+    .mf-route{flex-direction:row;height:34px}
     .mf-route .line{width:100%;height:2px;background:repeating-linear-gradient(90deg,var(--signal) 0 6px,transparent 6px 12px)}
     .mf-route .chip{transform:translate(-50%,-50%) rotate(90deg)}
+    .mf-head{flex-wrap:wrap;gap:.3rem .6rem}
     .pipeline{grid-template-columns:1fr;gap:1rem}
     footer .wrap{grid-template-columns:1fr}
     .f-priv{flex-direction:column;align-items:flex-start}
+    .hero-cta{gap:.7rem}
     .hero-cta .btn{width:100%}
-    .form-embed iframe{height:1480px}
+    .form-embed iframe{height:1620px}
   }
 
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
     .reveal{opacity:1!important;transform:none!important}
     .panel.new .rows li{opacity:1!important;transform:none!important}
+    .mf-progress .bar{transform:none!important}
+    html{scroll-behavior:auto}
   }
 
   /* スクロール表示 */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
   .reveal.in{opacity:1;transform:none}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"大和合同会社","alternateName":"YAMATO LLC","url":"https://www.yamato.llc/"},{"@type":"Service","serviceType":"基幹システムの移行・入れ替え","provider":{"@type":"Organization","name":"大和合同会社"},"areaServed":"JP","audience":{"@type":"BusinessAudience","name":"中小製造業"},"description":"古い基幹システムを、現状診断から新環境の構築、データと業務フローの移行までまるごと代行します。診断は無料です。"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"うちの古いデータでも、移せますか？","acceptedAnswer":{"@type":"Answer","text":"まずは無料診断で「移せるか」を確認します。多くは、形式や中身を整えれば移行できます。可否と進め方を先にはっきりさせるので、いきなり大きな決断は要りません。"}},{"@type":"Question","name":"移行の間、業務は止まりませんか？","acceptedAnswer":{"@type":"Answer","text":"止めない前提で設計します。一度に全部ではなく段階的に移し、新旧を並行で動かして、受発注や出荷への影響を抑えます。"}},{"@type":"Question","name":"費用が高くつきませんか？","acceptedAnswer":{"@type":"Answer","text":"中小規模に合わせるため、大手への大規模発注とは考え方が違います。診断は無料。費用は現状を把握したうえで、必要な範囲だけお見積りします。"}},{"@type":"Question","name":"ITに詳しくないのですが、大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"専門用語は使わず伴走します。「何を頼めばいいか分からない」で大丈夫です。難しい部分はこちらで引き受け、判断に必要なことだけ平易にお伝えします。"}},{"@type":"Question","name":"何から始めればいいですか？","acceptedAnswer":{"@type":"Answer","text":"下の無料診断からどうぞ。システムの状況を伺い、引っ越せるか診断します。先に進むかは、結果を見て決められます。"}}]}]}
+</script>
 </head>
 <body>
 
@@ -367,43 +434,49 @@
       <span class="glyph" aria-hidden="true"></span>
       <span><b>データの引越し屋さん</b><small>BY YAMATO LLC</small></span>
     </a>
-    <a class="btn sm" href="#shindan">無料診断を申し込む</a>
+    <a class="btn sm" href="#shindan" id="cta-header" data-cta="header" data-cta-location="sticky-header">無料診断を申し込む</a>
   </div>
 </header>
+
+<main>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <p class="eyebrow">SYSTEM MIGRATION&nbsp;<span class="jp">／ 中小製造業のための、システム“引っ越し”</span></p>
-      <h1>古い基幹システムを、<br><span class="hl">データも業務も止めずに</span>、<br>まるごと新しく。</h1>
-      <p class="lead">「保守も切れて、分かる人もいない」――そんな基幹システムの移行を、現状の診断から、新しい環境の用意、データと業務フローの移し替えまで、まるごと引き受けます。提案だけして去りません。実際の“引っ越し”まで、やり切ります。</p>
+      <p class="eyebrow">SYSTEM MIGRATION&nbsp;<span class="jp">／ 中小製造業の基幹システム移行</span></p>
+      <h1>保守が切れた基幹システムを<br><span class="hl">止めずにまるごと引っ越し</span></h1>
+      <p class="lead">「保守は終了、分かる人もいない」そんな古い基幹システムを現状診断から新環境の構築、データ移行までまるごと代行します。提案だけで終わりません。移し終えるまで実行します。</p>
       <div class="hero-cta">
-        <a class="btn" href="#shindan">無料で“引っ越せるか”診断する<span class="arr">→</span></a>
-        <a class="btn ghost" href="#flow">何をやってくれるの？</a>
+        <a class="btn" href="#shindan" id="cta-hero" data-cta="hero" data-cta-location="hero">無料で引っ越せるか診断する<span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="#flow" data-nav="what-we-do">何をやってくれるの？</a>
       </div>
       <div class="trust-row">
-        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>診断は無料</span>
-        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>中小製造業に特化</span>
-        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2A57A4" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>専門用語なしで伴走</span>
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>診断は無料</span>
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>中小製造業に特化</span>
+        <span class="pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>専門用語なしで伴走</span>
       </div>
     </div>
 
     <!-- シグネチャ：移送票 -->
-    <div class="manifest reveal" aria-label="旧システムから新環境へのデータ移送イメージ">
+    <figure class="manifest reveal" aria-label="旧システムから新環境へ、5種類のデータがすべて移し替えられていく様子を表したイメージ図">
       <div class="mf-head">
-        <span class="t">移送票&nbsp;<span class="ja">／ データの引っ越し</span></span>
-        <span class="mf-status">IN&nbsp;TRANSIT</span>
+        <span class="mf-title"><span class="mk" aria-hidden="true"></span>伝票<span class="ja">データの引っ越し</span></span>
+        <span class="mf-route-code" aria-hidden="true">LEGACY&nbsp;→&nbsp;CLOUD</span>
+      </div>
+      <div class="mf-meta">
+        <span class="mf-status"><span class="blip" aria-hidden="true"></span>IN&nbsp;TRANSIT</span>
+        <span class="mf-count" aria-hidden="true">移送&nbsp;<b>5</b>&nbsp;/&nbsp;5&nbsp;件</span>
       </div>
       <div class="mf-grid">
         <div class="panel old">
-          <div class="ph"><b>旧システム</b><span class="tagk">保守切れ・オフコン</span></div>
+          <div class="ph"><b>旧システム</b><span class="tagk">保守切れ・オンプレミス</span></div>
           <ul class="rows">
-            <li><span class="dot"></span>受発注データ</li>
-            <li><span class="dot"></span>在庫・部品マスタ</li>
-            <li><span class="dot"></span>仕入先・得意先台帳</li>
-            <li><span class="dot"></span>生産・出荷履歴</li>
-            <li><span class="dot"></span>請求・売掛データ</li>
+            <li><span class="dot" aria-hidden="true"></span>受発注データ</li>
+            <li><span class="dot" aria-hidden="true"></span>在庫・部品マスタ</li>
+            <li><span class="dot" aria-hidden="true"></span>仕入先・得意先台帳</li>
+            <li><span class="dot" aria-hidden="true"></span>生産・出荷履歴</li>
+            <li><span class="dot" aria-hidden="true"></span>請求・売掛データ</li>
           </ul>
         </div>
         <div class="mf-route" aria-hidden="true">
@@ -413,200 +486,228 @@
         <div class="panel new">
           <div class="ph"><b>新環境</b><span class="tagk">クラウド</span></div>
           <ul class="rows">
-            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
-            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
-            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
-            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
-            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
+            <li><svg class="ck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>移送済</li>
           </ul>
         </div>
       </div>
-      <div class="mf-foot">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
-        日々の業務を止めないよう、段階的に移送します。
+      <div class="mf-progress">
+        <div class="pl-head">
+          <span class="lbl">移行の進捗</span>
+          <span class="val" aria-hidden="true">5 / 5 完了</span>
+        </div>
+        <div class="track" aria-hidden="true"><span class="bar"></span></div>
       </div>
-    </div>
+      <figcaption class="mf-foot">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
+        業務を止めないよう少しずつ移します。
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- ===== 共感／問題提起 ===== -->
-<section class="sec alt" id="problem">
+<section class="sec alt" id="problem" aria-labelledby="problem-title">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">SELF-CHECK&nbsp;<span class="jp">／ 思い当たること</span></p>
-      <h2 class="title">こんな状態のまま、<br>使い続けていませんか。</h2>
+      <h2 class="title" id="problem-title">こんな状態のまま<br>使い続けていませんか。</h2>
     </div>
     <div class="checklist reveal">
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>20年ほど前に入れたシステムを、だましだまし使い続けている</p></div>
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>メーカーの保守・サポートは、すでに終了している</p></div>
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>社内に「システムが分かる人」がいない（退職・高齢化）</p></div>
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>足りないところは、Excelや手作業で補っている</p></div>
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>新しいシステムに替えたいが、データを移せるのか分からない</p></div>
-      <div class="check"><span class="bx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>「いつ止まるか」と思いながら、手を打てずにいる</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>20年ほど前に入れたシステムを、だましだまし使い続けている</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>メーカーの保守・サポートは、すでに終了している</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>社内に「システムが分かる人」がいない（退職・高齢化）</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>足りないところは、Excelや手作業で補っている</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>入れ替えたいが、データを移せるか分からない</p></div>
+      <div class="check"><span class="bx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg></span><p>「いつ止まるか」と思いながら、手を打てずにいる</p></div>
     </div>
-    <p class="after reveal">ひとつでも当てはまるなら、<span class="u">それは“引っ越し”を考えるサインです。</span></p>
+    <p class="after reveal">ひとつでも当てはまれば<span class="u">引っ越しの合図です。</span></p>
   </div>
 </section>
 
 <!-- ===== 放置のリスク ===== -->
-<section class="sec" id="risk">
+<section class="sec" id="risk" aria-labelledby="risk-title">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">WHY NOW&nbsp;<span class="jp">／ 先送りの代償</span></p>
-      <h2 class="title">「まだ動いているから」が、<br>いちばん危ない。</h2>
-      <p>古いシステムは、壊れてから動くのでは間に合いません。放置するほど、三つのリスクが静かに大きくなります。</p>
+      <h2 class="title" id="risk-title">「まだ動いているから」が<br>いちばん危ない。</h2>
+      <p>古いシステムは壊れてからでは間に合いません。放置するほどリスクは大きくなります。</p>
     </div>
     <div class="risk-grid">
       <div class="risk reveal">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+        <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
         <h3>止まれば、事業が止まる</h3>
-        <p>基幹システムが落ちれば、受発注・生産・出荷が一斉に止まります。一台のサーバーの不調が、会社全体を止めかねません。</p>
+        <p>システムが止まれば受発注も生産も出荷も止まります。サーバー1台の不調が会社全体を止めかねません。</p>
       </div>
       <div class="risk reveal">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
-        <h3>セキュリティの穴が放置される</h3>
-        <p>サポートが切れたシステムは、修正プログラムが提供されません。穴がふさがれないまま、ランサムウェア等の標的になりやすくなります。</p>
+        <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>セキュリティの穴がふさがらない</h3>
+        <p>保守が切れると修正プログラムが出ません。穴が空いたままランサムウェアなどの標的になりやすくなります。</p>
       </div>
       <div class="risk reveal">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></span>
-        <h3>先送りほど、高くつく</h3>
-        <p>当時を知る人がいなくなり、資料も散逸すると、移行はますます難しくなります。早く動くほど、手間も費用も小さく済みます。</p>
+        <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></span>
+        <h3>先送りほど高くつく</h3>
+        <p>当時を知る人が減り資料も散らばると、移行はどんどん難しくなります。早く動くほど手間も費用も抑えられます。</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 解決：一気通貫3ステップ ===== -->
-<section class="sec alt" id="flow">
+<section class="sec alt" id="flow" aria-labelledby="flow-title">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">WHAT WE DO&nbsp;<span class="jp">／ やること</span></p>
-      <h2 class="title">診断から移行まで、ぜんぶやります。</h2>
+      <h2 class="title" id="flow-title">診断から移行までぜんぶやります。</h2>
     </div>
-    <p class="lead flow-intro reveal">わたしたちは「どうすべきか」を助言して終わる会社ではありません。現状を診て、新しい環境を用意し、データと業務を移し終えるところまで。手を動かす部分を、一気通貫で引き受けます。</p>
+    <p class="lead flow-intro reveal">「どうすべきか」の助言で終わりません。現状の診断、新環境の構築、データと業務の移行まで、手を動かす部分を最後まで引き受けます。</p>
     <div class="steps">
       <div class="step s1 reveal">
-        <div class="num"><span>01</span></div>
+        <div class="num" aria-hidden="true"><span>01</span></div>
         <h3>現状を診断する</h3>
-        <p>どんなデータが、どのシステムに、どんな形で詰まっているのか。移せるのか、何が課題か。まずはここを、はっきりさせます。</p>
-        <span class="free"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>ここまで無料</span>
+        <p>どのデータがどんな形で眠っているか。移せるか、何が課題か。まずはここをはっきりさせます。</p>
+        <span class="free"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>ここまで無料</span>
       </div>
       <div class="step s2 reveal">
-        <div class="num"><span>02</span></div>
+        <div class="num" aria-hidden="true"><span>02</span></div>
         <h3>新しい環境を用意する</h3>
-        <p>御社の規模と業務に合った移行先（クラウドが基本）を選び、構築します。大手向けの過剰な仕組みは持ち込みません。</p>
+        <p>御社の規模に合う移行先（クラウドが基本）を選び、構築します。大手向けの過剰な作りは持ち込みません。</p>
       </div>
       <div class="step s3 reveal">
-        <div class="num"><span>03</span></div>
+        <div class="num" aria-hidden="true"><span>03</span></div>
         <h3>データと業務を移す</h3>
-        <p>既存データの移し替えと、日々の業務フローの移行まで実行します。止めないよう、段階的に・並行で進めます。</p>
+        <p>既存データと日々の業務フローを移します。止めないよう少しずつ並行で進めます。</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== なぜここか ===== -->
-<section class="sec" id="why">
+<section class="sec" id="why" aria-labelledby="why-title">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">WHY US&nbsp;<span class="jp">／ 選ぶ理由</span></p>
-      <h2 class="title">大手SIerでも、<br>コンサルだけの会社でもありません。</h2>
+      <h2 class="title" id="why-title">大手SIerでも<br>コンサルだけの会社でもありません。</h2>
     </div>
     <div class="why-grid">
       <div class="why reveal">
-        <div class="k">FOCUS</div>
+        <span class="k">FOCUS</span>
         <h3>中小製造業に特化</h3>
-        <p>100人規模の現場に合わせた、過不足のない移行を。大規模・高額な「大手のやり方」は持ち込まず、小回りで動きます。</p>
+        <p>100人規模の現場に合わせて、過不足なく移行します。大手のやり方は持ち込まず、小回りで動きます。</p>
       </div>
       <div class="why reveal">
-        <div class="k">HANDS-ON</div>
+        <span class="k">HANDS-ON</span>
         <h3>コンサルで終わらず、実行まで</h3>
-        <p>レポートを渡して去る、はしません。新しい環境の構築も、データの移行も、こちらが手を動かして、移し終えるところまで。</p>
+        <p>レポートを渡して終わりにしません。環境の構築もデータ移行も、こちらが手を動かして仕上げます。</p>
       </div>
       <div class="why reveal">
-        <div class="k">OPERATOR</div>
+        <span class="k">OPERATOR</span>
         <h3>運営は大和合同会社</h3>
-        <p>「現場で手を動かす」ことを信条とするプロフェッショナル・ファームが運営しています。</p>
-        <a class="more" href="https://www.yamato.llc/about" target="_blank" rel="noopener">会社概要を見る →</a>
+        <p>「現場で手を動かす」を信条とする大和合同会社が運営しています。</p>
+        <a class="more" href="https://www.yamato.llc/about" target="_blank" rel="noopener">会社概要を見る<span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 中盤CTA ===== -->
+<section class="cta-band" id="cta-mid-section" aria-labelledby="cta-band-title">
+  <div class="wrap">
+    <div class="cta-band-inner reveal">
+      <div class="cta-band-copy">
+        <p class="eyebrow">NEXT STEP&nbsp;<span class="jp">／ 次の一歩</span></p>
+        <h2 id="cta-band-title">まずは<span class="hl">「引っ越せるか」</span>だけ<br>無料で確かめませんか。</h2>
+        <p>入力は1分ほど。現状を伺い、移せるか診断します。先に進むかは、結果を見てから決められます。</p>
+      </div>
+      <div class="cta-band-act">
+        <a class="btn" href="#shindan" id="cta-mid" data-cta="mid" data-cta-location="mid-page">無料診断を申し込む<span class="arr" aria-hidden="true">→</span></a>
+        <p class="cta-note">診断は無料／無理な営業はしません</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== FAQ ===== -->
-<section class="sec alt" id="faq">
+<section class="sec alt" id="faq" aria-labelledby="faq-title">
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="eyebrow">FAQ&nbsp;<span class="jp">／ よくあるご不安</span></p>
-      <h2 class="title">頼む前に、気になること。</h2>
+      <h2 class="title" id="faq-title">頼む前に、気になること。</h2>
     </div>
     <div class="faq">
       <details class="qa reveal" open>
-        <summary class="q"><span class="qmark">Q</span><span>うちの古いデータでも、移せますか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="a">まずは<strong>無料診断で「移せるか」を確認</strong>します。多くの場合、データの形式や中身を整えれば移行は可能です。可否と、どう移すかを最初にはっきりさせるので、いきなり大きな決断をする必要はありません。</div>
+        <summary class="q"><span class="qmark" aria-hidden="true">Q</span><span>うちの古いデータでも、移せますか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">まずは<strong>無料診断で「移せるか」を確認</strong>します。多くは、形式や中身を整えれば移行できます。可否と進め方を先にはっきりさせるので、いきなり大きな決断は要りません。</div>
       </details>
       <details class="qa reveal">
-        <summary class="q"><span class="qmark">Q</span><span>移行の間、業務は止まりませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="a"><strong>止めないことを前提に設計します。</strong>一度に全部ではなく段階的に移したり、新旧を並行して動かしたりして、日々の受発注や出荷への影響を最小限に抑えます。</div>
+        <summary class="q"><span class="qmark" aria-hidden="true">Q</span><span>移行の間、業務は止まりませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a"><strong>止めない前提で設計します。</strong>一度に全部ではなく段階的に移し、新旧を並行で動かして、受発注や出荷への影響を抑えます。</div>
       </details>
       <details class="qa reveal">
-        <summary class="q"><span class="qmark">Q</span><span>費用が高くつきませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="a">中小規模に合わせた進め方をするため、大手に大規模発注するのとは考え方が違います。<strong>診断は無料</strong>。費用は現状を把握したうえで、必要な範囲だけお見積りします。先に金額だけが独り歩きすることはありません。</div>
+        <summary class="q"><span class="qmark" aria-hidden="true">Q</span><span>費用が高くつきませんか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">中小規模に合わせるため、大手への大規模発注とは考え方が違います。<strong>診断は無料</strong>。費用は現状を把握したうえで、必要な範囲だけお見積りします。金額だけが独り歩きすることはありません。</div>
       </details>
       <details class="qa reveal">
-        <summary class="q"><span class="qmark">Q</span><span>ITに詳しくないのですが、大丈夫ですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="a"><strong>専門用語は使わずに、伴走します。</strong>「何を頼めばいいかも分からない」という状態からで大丈夫です。難しい部分はこちらで引き受け、判断に必要なことだけ、平易にお伝えします。</div>
+        <summary class="q"><span class="qmark" aria-hidden="true">Q</span><span>ITに詳しくないのですが、大丈夫ですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a"><strong>専門用語は使わず伴走します。</strong>「何を頼めばいいか分からない」で大丈夫です。難しい部分はこちらで引き受け、判断に必要なことだけ平易にお伝えします。</div>
       </details>
       <details class="qa reveal">
-        <summary class="q"><span class="qmark">Q</span><span>何から始めればいいですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <div class="a">下の<strong>無料診断のお問い合わせ</strong>から、お気軽にどうぞ。御社のシステムの状況を伺い、引っ越せるかどうかを診断します。そこから先に進むかは、結果を見て決めていただけます。</div>
+        <summary class="q"><span class="qmark" aria-hidden="true">Q</span><span>何から始めればいいですか？</span><svg class="tog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+        <div class="a">下の<strong>無料診断</strong>からどうぞ。システムの状況を伺い、引っ越せるか診断します。先に進むかは、結果を見て決められます。</div>
       </details>
     </div>
   </div>
 </section>
 
 <!-- ===== 流れ ===== -->
-<section class="sec" id="process">
+<section class="sec" id="process" aria-labelledby="process-title">
   <div class="wrap">
     <div class="sec-head center reveal">
       <p class="eyebrow">PROCESS&nbsp;<span class="jp">／ ご相談から移行までの流れ</span></p>
-      <h2 class="title">最初の一歩は、無料です。</h2>
+      <h2 class="title" id="process-title">最初の一歩は、無料です。</h2>
     </div>
-    <div class="pipeline reveal">
-      <div class="pl free"><div class="ring">1</div><h4>お問い合わせ</h4><span>無料診断の申込</span></div>
-      <div class="pl free"><div class="ring">2</div><h4>ヒアリング・診断</h4><span>現状の確認</span></div>
-      <div class="pl free"><div class="ring">3</div><h4>診断レポート</h4><span>可否と方針を提示</span></div>
-      <div class="pl paid"><div class="ring">4</div><h4>お見積り</h4><span>ご納得いただけたら</span></div>
-      <div class="pl paid"><div class="ring">5</div><h4>移行の実行</h4><span>データ・業務の移送</span></div>
-    </div>
-    <p class="pipeline-note reveal"><b>1〜3は無料です。</b>お見積りより先（4以降）は、内容にご納得いただいてから。診断だけで終えていただいても構いません。</p>
+    <ol class="pipeline reveal" aria-label="ご相談から移行までの5ステップ">
+      <li class="pl free"><div class="ring" aria-hidden="true">1</div><h3>お問い合わせ</h3><span>無料診断の申込</span></li>
+      <li class="pl free"><div class="ring" aria-hidden="true">2</div><h3>ヒアリング・診断</h3><span>現状の確認</span></li>
+      <li class="pl free"><div class="ring" aria-hidden="true">3</div><h3>診断レポート</h3><span>可否と方針を提示</span></li>
+      <li class="pl paid"><div class="ring" aria-hidden="true">4</div><h3>お見積り</h3><span>ご納得いただけたら</span></li>
+      <li class="pl paid"><div class="ring" aria-hidden="true">5</div><h3>移行の実行</h3><span>データ・業務の移送</span></li>
+    </ol>
+    <p class="pipeline-note reveal"><b>1〜3は無料です。</b>お見積り（4以降）は、ご納得いただいてから。診断だけで終えても構いません。</p>
   </div>
 </section>
 
 <!-- ===== 最終CTA＋フォーム ===== -->
-<section class="final" id="shindan">
+<section class="final" id="shindan" aria-labelledby="final-title">
   <div class="wrap">
     <div class="final-copy reveal">
       <p class="eyebrow">FREE DIAGNOSIS&nbsp;<span class="jp">／ 無料診断</span></p>
-      <h2>まずは、<span class="hl">「引っ越せるか」</span>を<br>無料で確かめませんか。</h2>
-      <p class="lead">御社のシステムの状況を伺い、データを移せるかどうかを診断します。申し込みは1分。診断は無料。その先に進むかどうかは、結果を見てから決めていただけます。</p>
+      <h2 id="final-title">まずは、<span class="hl">「引っ越せるか」</span>を<br>無料で確かめませんか。</h2>
+      <p class="lead">システムの状況を伺い、移せるか診断します。入力は1分、診断は無料。先に進むかは、結果を見てから決められます。</p>
       <div class="assure">
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>診断とご相談は無料。費用は現状把握のあとだけ。</div>
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>専門用語抜きで、状況だけ伺います。</div>
-        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>無理な営業はいたしません。</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>診断とご相談は無料。費用は現状把握のあとだけ。</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>専門用語抜きで、状況だけ伺います。</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>無理な営業はいたしません。</div>
       </div>
     </div>
 
     <div class="form-embed reveal">
+      <p class="fe-tab"><span class="dot" aria-hidden="true"></span>無料診断のお申し込みフォーム</p>
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSdC0Yh2rKxz0gK0hs53sqnseSgV1A218fL6ZsEFV5X83aPGyQ/viewform?embedded=true"
-        width="100%" height="1320" frameborder="0" marginheight="0" marginwidth="0"
+        width="100%" height="1360" frameborder="0" marginheight="0" marginwidth="0"
         title="無料診断のお申し込みフォーム" loading="lazy">
         <span class="loading">フォームを読み込んでいます…</span>
       </iframe>
     </div>
+    <p class="form-fallback reveal">フォームが表示されない場合は、<a href="https://docs.google.com/forms/d/e/1FAIpQLSdC0Yh2rKxz0gK0hs53sqnseSgV1A218fL6ZsEFV5X83aPGyQ/viewform" target="_blank" rel="noopener">こちらから直接ご記入いただけます</a>。</p>
   </div>
 </section>
+
+</main>
 
 <!-- ===== フッター ===== -->
 <footer>
@@ -616,11 +717,11 @@
         <span class="glyph" aria-hidden="true"></span>
         <span><b>データの引越し屋さん</b><small>BY YAMATO LLC</small></span>
       </a>
-      <p>古い基幹システムの移行を、診断から実行まで引き受ける、中小製造業のための“引っ越し”サービスです。</p>
+      <p>中小製造業の基幹システム移行を、診断から実行までまるごと引き受けます。</p>
     </div>
     <nav class="f-meta" aria-label="フッター">
       <a href="https://www.yamato.llc/about" target="_blank" rel="noopener">運営会社（大和合同会社）</a>
-      <a href="#shindan">無料診断のお申し込み</a>
+      <a href="#shindan" data-cta="footer" data-cta-location="footer">無料診断のお申し込み</a>
       <a href="#faq">よくあるご不安</a>
     </nav>
     <div class="f-priv">
