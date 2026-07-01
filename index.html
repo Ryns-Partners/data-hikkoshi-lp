@@ -297,43 +297,20 @@
   /* ---------- 最終CTA＋フォーム ---------- */
   .final{background:var(--ink);color:#EAEDF4;position:relative;overflow:hidden}
   .final::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent);mask-image:radial-gradient(80% 80% at 70% 0%,#000,transparent)}
-  .final .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
-  .final .eyebrow{color:var(--signal)}
+  .final .wrap{position:relative;z-index:1}
+  .final .final-copy{max-width:640px;margin:0 auto clamp(2.2rem,4vw,3rem);text-align:center}
+  .final .eyebrow{color:var(--signal);justify-content:center}
   .final .eyebrow::before{background:var(--signal)}
   .final h2{font-size:clamp(1.7rem,3.6vw,2.5rem);color:#fff;line-height:1.34;margin-bottom:1.1rem}
   .final h2 .hl{color:var(--signal)}
   .final .lead{color:#B9C1D4}
-  .final .assure{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+  .final .assure{margin:1.6rem auto 0;max-width:460px;display:flex;flex-direction:column;gap:.7rem;text-align:left}
   .final .assure div{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem;color:#D4DAE6;font-weight:500}
   .final .assure svg{flex:none;color:var(--signal);margin-top:.18rem}
 
-  .form-card{background:var(--surface);border-radius:18px;box-shadow:var(--sh-lift);padding:clamp(1.5rem,3vw,2.1rem);color:var(--ink)}
-  .form-card .fh{font-weight:900;font-size:1.18rem;margin-bottom:.35rem}
-  .form-card .fs{font-size:.88rem;color:var(--ink-mute);margin-bottom:1.4rem;font-family:var(--ff-mono);letter-spacing:.02em}
-  .field{margin-bottom:1rem}
-  .field label{display:block;font-size:.86rem;font-weight:700;margin-bottom:.4rem;color:var(--ink)}
-  .field label .req{color:var(--signal-deep);font-family:var(--ff-mono);font-size:.72rem;margin-left:.35em;font-weight:600}
-  .field label .opt{color:var(--ink-mute);font-weight:500;font-size:.78rem;margin-left:.35em}
-  .field input,.field textarea{
-    width:100%;font-family:var(--ff-jp);font-size:1rem;color:var(--ink);
-    padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:10px;background:#FCFDFB;
-    transition:border-color .18s ease, box-shadow .18s ease;
-  }
-  .field input::placeholder,.field textarea::placeholder{color:#AEB4A6}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
-  .field textarea{resize:vertical;min-height:84px;line-height:1.7}
-  .field.err input,.field.err textarea{border-color:#C2761A;box-shadow:0 0 0 3px var(--signal-soft)}
-  .field .msg{display:none;color:var(--signal-deep);font-size:.78rem;margin-top:.35rem;font-weight:600}
-  .field.err .msg{display:block}
-  .form-card .btn{width:100%;margin-top:.4rem}
-  .form-card .privacy{margin-top:1rem;font-size:.78rem;color:var(--ink-mute);line-height:1.7;display:flex;gap:.5em;align-items:flex-start}
-  .form-card .privacy svg{flex:none;margin-top:.15rem;color:var(--ink-mute)}
-
-  .form-done{display:none;text-align:center;padding:1.5rem .5rem}
-  .form-done.show{display:block;animation:rowIn .5s ease}
-  .form-done .badge{width:62px;height:62px;border-radius:50%;background:var(--signal-soft);color:var(--signal-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem}
-  .form-done h3{font-size:1.25rem;margin-bottom:.6rem;font-weight:900}
-  .form-done p{color:var(--ink-soft);font-size:.96rem;margin:0 auto;max-width:24rem}
+  .form-embed{max-width:720px;margin:0 auto;background:var(--surface);border-radius:18px;box-shadow:var(--sh-lift);overflow:hidden;padding:.5rem}
+  .form-embed iframe{display:block;width:100%;border:0;border-radius:14px;background:#fff;height:1320px}
+  .form-embed .loading{font-family:var(--ff-mono);font-size:.85rem;color:var(--ink-mute);padding:1.2rem;text-align:center}
 
   /* ---------- フッター ---------- */
   footer{background:var(--paper-2);border-top:1px solid var(--line);padding-block:clamp(2.5rem,5vw,3.5rem);font-size:.9rem}
@@ -351,7 +328,6 @@
   @media(max-width:920px){
     .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
     .hero .manifest{max-width:520px}
-    .final .wrap{grid-template-columns:1fr;gap:2.5rem}
     .why-grid,.risk-grid,.steps{grid-template-columns:1fr}
     .step{padding:1.3rem 0}
     .step:not(:last-child)::after{display:none}
@@ -368,6 +344,7 @@
     footer .wrap{grid-template-columns:1fr}
     .f-priv{flex-direction:column;align-items:flex-start}
     .hero-cta .btn{width:100%}
+    .form-embed iframe{height:1480px}
   }
 
   @media(prefers-reduced-motion:reduce){
@@ -620,47 +597,13 @@
       </div>
     </div>
 
-    <div class="form-card reveal">
-      <form id="shindan-form" novalidate>
-        <div class="fh">無料診断のお申し込み</div>
-        <div class="fs">※ <span id="reqcount">3</span>項目のご入力で送信できます</div>
-
-        <div class="field" id="f-company">
-          <label for="company">会社名<span class="req">必須</span></label>
-          <input type="text" id="company" name="company" placeholder="例：○○製作所" autocomplete="organization">
-          <span class="msg">会社名をご入力ください</span>
-        </div>
-        <div class="field" id="f-name">
-          <label for="name">お名前<span class="req">必須</span></label>
-          <input type="text" id="name" name="name" placeholder="例：山田 太郎" autocomplete="name">
-          <span class="msg">お名前をご入力ください</span>
-        </div>
-        <div class="field" id="f-email">
-          <label for="email">メールアドレス<span class="req">必須</span></label>
-          <input type="email" id="email" name="email" placeholder="例：yamada@example.co.jp" autocomplete="email" inputmode="email">
-          <span class="msg">正しいメールアドレスをご入力ください</span>
-        </div>
-        <div class="field">
-          <label for="tel">電話番号<span class="opt">任意</span></label>
-          <input type="tel" id="tel" name="tel" placeholder="例：026-000-0000" autocomplete="tel" inputmode="tel">
-        </div>
-        <div class="field">
-          <label for="detail">今お使いのシステム・お困りごと<span class="opt">任意</span></label>
-          <textarea id="detail" name="detail" placeholder="例：富士通のオフコンを20年使用。保守が切れていて不安。受発注と在庫のデータを移したい。"></textarea>
-        </div>
-
-        <button type="submit" class="btn">無料診断を申し込む<span class="arr">→</span></button>
-        <p class="privacy">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          ご入力いただいた内容は、本サービスのご連絡のみに利用し、第三者には提供しません。
-        </p>
-      </form>
-
-      <div class="form-done" id="form-done" role="status" aria-live="polite">
-        <div class="badge"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></div>
-        <h3>お申し込みありがとうございます。</h3>
-        <p>担当者より、3営業日以内にご連絡いたします。今しばらくお待ちくださいませ。</p>
-      </div>
+    <div class="form-embed reveal">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdC0Yh2rKxz0gK0hs53sqnseSgV1A218fL6ZsEFV5X83aPGyQ/viewform?embedded=true"
+        width="100%" height="1320" frameborder="0" marginheight="0" marginwidth="0"
+        title="無料診断のお申し込みフォーム" loading="lazy">
+        <span class="loading">フォームを読み込んでいます…</span>
+      </iframe>
     </div>
   </div>
 </section>
@@ -710,35 +653,6 @@
     }, {threshold:0.12, rootMargin:"0px 0px -8% 0px"});
     reveals.forEach(function(el){ io.observe(el); });
   }
-
-  // フォーム：その場で検証→サンクス表示（送信先は本番でGoogleフォーム等に接続）
-  var form = document.getElementById("shindan-form");
-  var done = document.getElementById("form-done");
-  function setErr(id, on){ document.getElementById(id).classList.toggle("err", on); }
-  function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-
-  form.addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var c = document.getElementById("company").value.trim();
-    var n = document.getElementById("name").value.trim();
-    var e = document.getElementById("email").value.trim();
-    var okC = !!c, okN = !!n, okE = isEmail(e);
-    setErr("f-company", !okC); setErr("f-name", !okN); setErr("f-email", !okE);
-
-    if(okC && okN && okE){
-      form.style.display = "none";
-      done.classList.add("show");
-      done.scrollIntoView({behavior: prefersReduced ? "auto" : "smooth", block:"center"});
-    } else {
-      var first = form.querySelector(".field.err input");
-      if(first) first.focus();
-    }
-  });
-
-  // 入力で都度エラー解除
-  ["company","name","email"].forEach(function(k){
-    document.getElementById(k).addEventListener("input", function(){ setErr("f-"+k, false); });
-  });
 })();
 </script>
 </body>
